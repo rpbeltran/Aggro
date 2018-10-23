@@ -21,7 +21,6 @@ If you already have Python installed, the rest can be aquired by running the pro
 
 ### Logical
 * Universal Instantiation
-* Existential Instantiation
 * Ternary expressions
 
 ### Boolean
