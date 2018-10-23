@@ -7,12 +7,14 @@ Declarative Programming in Straight Up Natural Language
 
 ## Install
 
-0) Install Python version 2.7
+Install Python version 2.7
 
-1) In terminal:
-	1a) $ pip install nltk
+In terminal:
 
-2) from Python:
+	$ pip install nltk
+
+from Python:
+
 	2a) >> import nltk
 	2b) >> nltk.download('punkt')
 	2c) >> nltk.download('stopwords')
@@ -26,19 +28,19 @@ Declarative Programming in Straight Up Natural Language
 
 ## Syntax Features
 
-## Logical
+### Logical
 * Universal Instantiation
 * Existential Instantiation
 * Ternary expressions
 
-## Boolean
+### Boolean
 * Boolean constants
 * And
 * Or
 * Negation
 * Comparisons
 
-## Numeric
+### Numeric
 * Constants
 * Addition
 * Subtraction
@@ -46,7 +48,7 @@ Declarative Programming in Straight Up Natural Language
 * Division
 * Modulus
 
-## Collections
+### Collections
 * Ranges
 * Enumerated lists
 * Tail recursion
