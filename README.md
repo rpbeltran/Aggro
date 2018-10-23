@@ -5,22 +5,13 @@
 Declarative Programming in Straight Up Natural Language
 
 
-## Install
+## Installing
 
-Install Python version 2.7
+We require Python 2.7, nltk, and a few nltk packages.
 
-In terminal:
+If you already have Python installed, the rest can be aquired by running the provided installer.py
 
-	$ pip install nltk
-
-from Python:
-
-	2a) >> import nltk
-	2b) >> nltk.download('punkt')
-	2c) >> nltk.download('stopwords')
-	2d) >> nltk.download('averaged_perceptron_tagger')
-	2e) >> nltk.download('maxent_ne_chunker')
-	2f) >> nltk.download('words')
+`$python installer.py`
 
 
 ## Usage
