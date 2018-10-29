@@ -19,8 +19,6 @@ class Tokenized_Data :
 		self.pos       = pos
 
 
-
-
 class Tokenizer:
 
 	default_settings = {

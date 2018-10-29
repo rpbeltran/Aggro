@@ -7,6 +7,38 @@
 #    * Context-dependent referencial utilizations
 
 
+
+
+### Tokens
+
+'''
+IF
+THEN
+OTHERWISE
+
+AND
+OR
+
+DIVIDES
+EVENLY
+
+CMP_EQ
+CMP_LT
+CMP_GT
+CMP_LE
+CMP_GE
+
+BOOLEAN_CONSTANT
+NUMERIC_CONSTANT
+
+IDENTIFIER
+TYPE
+'''
+
+
+### Chunks
+
+
 '''
 utilization : forward_utilization | backward_utilization
 '''
@@ -26,6 +58,12 @@ high_expression : proposition
 				| NOT high_expression
 '''
 
+
+'''
+high_functor : proposition bin_op
+             | proposition bin_op high_functor 
+'''
+
 '''
 boolean_bin_op : AND | OR
 '''
@@ -40,85 +78,35 @@ proposition : numeric_expression CMP_EQ numeric_expression
             | numeric_expression DIVIDES numeric_expression
             | numeric_expression DIVIDES numeric_expression EVENLY
 
-            | VARIABLE HOLDS VARIABLE
-
-            | VARIABLE
+            | variable HOLDS variable
 
             | BOOLEAN_CONSTANT
 '''
 
 '''
 numeric_expression : numeric_expression numeric_bin_op numeric_expression
-                   | VARIABLE
+
                    | NUMERIC_CONSTANT
 '''
+
 
 '''
 numeric_bin_op : PLUS | MINUS | TIMES | DIVIDE_BY | POWER_OF | MOD
 '''
+
+'''
+variable : IDENTIFIER
+         | IDENTIFIER IDENTIFIER
+         | IDENTIFIER IDENTIFIER IDENTIFIER
+'''
+
 
 
 # Example:
 
 # "A year y is a leap year if 4 divides y evenly and y does not divide 100 or y divides 400. Is 2012 a leap year?"
 # Tokens: 
-#     "y"/VARIABLE  "is"/HOLDS  "leap year"/VARIABLE  "if"/IF  "4"/NUMERIC_CONSTANT  "divides"/DIVIDES  "y"/VARIABLE  "evenly"/EVENLY ...
+#     "year"/type "y"/IDENTIFIER  "is"/HOLDS  "leap year"/IDENTIFIER  "if"/IF  "4"/NUMERIC_CONSTANT  "divides"/DIVIDES  "y"/IDENTIFIER  "evenly"/EVENLY ...
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# "A number n is prime if there exists no number m in the range of 1 to n such that m divides n evenly. Is 73 prime?"
-
-#  "n"/VARIABLE "is"/HOLDS "prime"/VARIABLE "if"/IF 
