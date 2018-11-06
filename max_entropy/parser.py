@@ -1,5 +1,5 @@
 
-from tokenizer import Aggro_Tokenizer
+from tokenizer import Aggro_Tokenizer, stem_sentence
 import ply.yacc as yacc
 import sys
 
@@ -7,6 +7,14 @@ import sys
 
 tokenizer = Aggro_Tokenizer()
 tokens    = Aggro_Tokenizer.tokens
+
+
+# --- NLP Challenges ---
+
+# - Identify what is really being anded, ored, and negated
+# - Identify chances two identifiers are refering to the same thing
+# - Support the "it" identifier
+
 
 # ------------------------
 #  - - - Structures - - -
@@ -67,6 +75,28 @@ precedence = (
 #  - - - Parser Patterns - - -
 # -----------------------------
 
+
+def p_back_utilization( p ):
+    '''utilization : IF proposition THEN proposition'''
+
+    p[0] = Node( p[1] + " " + p[3], [ p[2], p[4] ] )
+
+
+def p_high_poposition( p ):
+    '''proposition : proposition AND proposition
+                   | proposition OR  proposition
+                   | NOT proposition
+    '''
+
+    if len( p ) == 3: #unary
+
+        p[0] = Node( p[1], [ p[2] ] )
+
+    else:
+
+        p[0] = Node( p[2], [ p[1], p[3] ] )
+
+
 def p_proposition( p ):
     '''proposition : numeric_expression EQUALS EQUALS numeric_expression
                    | numeric_expression EQUALS numeric_expression
@@ -75,19 +105,19 @@ def p_proposition( p ):
                    | BOOLEAN_CONSTANT
     '''
 
-    if len( p ) == 5:
+    if len( p ) == 5: # a equals equals b
 
         p[0] = Node( p[3], [ p[1], p[4] ] )
 
-    elif len( p ) == 4:
+    elif len( p ) == 4: # a equals/inequals b
 
         p[0] = Node( p[2], [ p[1], p[3] ] )
 
-    elif len( p ) == 3:
+    elif len( p ) == 3: # a evenly
 
         p[0] = Node( "is", [ Node( "mod", p[1].children ), Node( 0 ) ] )
 
-    else:
+    else: # boolean const
 
         p[0] = Node( p[1] )
 
@@ -113,7 +143,7 @@ def p_inequality( p ):
                   | THAN
                   | CMP_LT THAN
                   | CMP_GT THAN'''
-    print len( p )
+
     p[0] = p[1]
 
 def p_numeric_expression( p ):
@@ -141,7 +171,7 @@ def p_identifier( p ):
     '''identifier : identifier_content
     '''
 
-    p[0] = Node( ' '.join(map(str, p[1])), map( Node, p[1] ) )
+    p[0] = Node( '_identifier_', map( Node, p[1] ) )
 
 
 def p_identifier_content( p ):
@@ -163,9 +193,11 @@ yacc.yacc()
 
 def main( ):
 
-    print ""
-    #print yacc.parse( "1 plu 2 plu 3 plu 4 time year y" )
-    print yacc.parse( "year y divide 1 than 1" )
+    ss = stem_sentence("if 2 divides the number n evenly then n is even")
+
+    print ss + "\n"
+
+    print yacc.parse( ss )
     print ""
 
 if __name__ == '__main__':

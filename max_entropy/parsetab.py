@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftEQUALSCMP_LTCMP_GTleftANDORleftPLUSMINUSleftTIMESDIVIDErightPOWERnonassocNOTAND BOOLEAN_CONSTANT BY CMP_GT CMP_LT DIVIDE ELSE EQUALS EVENLY IF MINUS MOD NOT NUMERIC_CONSTANT OR OTHERWISE PLUS POWER THAN THEN TIMES TO UNWORDproposition : numeric_expression EQUALS EQUALS numeric_expression\n                   | numeric_expression EQUALS numeric_expression\n                   | numeric_expression inequality numeric_expression\n                   | numeric_expression EVENLY\n                   | BOOLEAN_CONSTANT\n    inequality : inequality OR EQUALS\n                  | inequality OR EQUALS TOinequality : EQUALS inequality\n    inequality : CMP_LT\n                  | CMP_GT\n                  | THAN\n                  | CMP_LT THAN\n                  | CMP_GT THANnumeric_expression : numeric_expression PLUS   numeric_expression \n                          | numeric_expression MINUS  numeric_expression\n                          | numeric_expression TIMES  numeric_expression\n                          | numeric_expression DIVIDE numeric_expression\n                          | numeric_expression POWER  numeric_expression\n                          | numeric_expression MOD    numeric_expression\n                          | identifier\n                          | numeric_const\n    numeric_const : NUMERIC_CONSTANTidentifier : identifier_content\n    identifier_content : UNWORD\n                          | UNWORD identifier_content\n    '
+_lr_signature = 'leftEQUALSCMP_LTCMP_GTleftANDORleftPLUSMINUSleftTIMESDIVIDErightPOWERnonassocNOTAND BOOLEAN_CONSTANT BY CMP_GT CMP_LT DIVIDE ELSE EQUALS EVENLY IF MINUS MOD NOT NUMERIC_CONSTANT OR OTHERWISE PLUS POWER THAN THEN TIMES TO UNWORDback_utilization : IF proposition THEN propositionproposition : proposition AND proposition\n                   | proposition OR  proposition\n                   | NOT proposition\n    proposition : numeric_expression EQUALS EQUALS numeric_expression\n                   | numeric_expression EQUALS numeric_expression\n                   | numeric_expression inequality numeric_expression\n                   | numeric_expression EVENLY\n                   | BOOLEAN_CONSTANT\n    inequality : inequality OR EQUALS\n                  | inequality OR EQUALS TOinequality : EQUALS inequality\n    inequality : CMP_LT\n                  | CMP_GT\n                  | THAN\n                  | CMP_LT THAN\n                  | CMP_GT THANnumeric_expression : numeric_expression PLUS   numeric_expression \n                          | numeric_expression MINUS  numeric_expression\n                          | numeric_expression TIMES  numeric_expression\n                          | numeric_expression DIVIDE numeric_expression\n                          | numeric_expression POWER  numeric_expression\n                          | numeric_expression MOD    numeric_expression\n                          | identifier\n                          | numeric_const\n    numeric_const : NUMERIC_CONSTANTidentifier : identifier_content\n    identifier_content : UNWORD\n                          | UNWORD identifier_content\n    '
     
-_lr_action_items = {'CMP_GT':([1,2,3,4,6,7,12,21,23,24,25,28,31,33,34,35,],[-20,-23,-22,-21,9,-24,9,-25,-17,-18,9,-16,-14,-19,-15,9,]),'OR':([9,14,16,18,22,26,32,37,38,],[-10,30,-9,-11,-13,30,-12,-6,-7,]),'DIVIDE':([1,2,3,4,6,7,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,10,-24,-25,-17,-18,10,-16,10,10,10,10,10,]),'POWER':([1,2,3,4,6,7,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,11,-24,-25,11,11,11,11,11,11,11,11,11,]),'MOD':([1,2,3,4,6,7,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,17,-24,-25,-17,-18,17,-16,17,-14,17,-15,17,]),'EVENLY':([1,2,3,4,6,7,21,23,24,28,31,33,34,],[-20,-23,-22,-21,20,-24,-25,-17,-18,-16,-14,-19,-15,]),'EQUALS':([1,2,3,4,6,7,12,21,23,24,25,28,30,31,33,34,35,],[-20,-23,-22,-21,12,-24,25,-25,-17,-18,35,-16,37,-14,-19,-15,35,]),'TIMES':([1,2,3,4,6,7,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,13,-24,-25,-17,-18,13,-16,13,13,13,13,13,]),'TO':([37,],[38,]),'UNWORD':([0,7,9,10,11,12,13,14,15,16,17,18,19,22,25,26,32,37,38,],[7,7,-10,7,7,7,7,7,7,-9,7,-11,7,-13,7,-8,-12,-6,-7,]),'PLUS':([1,2,3,4,6,7,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,15,-24,-25,-17,-18,15,-16,15,-14,15,-15,15,]),'CMP_LT':([1,2,3,4,6,7,12,21,23,24,25,28,31,33,34,35,],[-20,-23,-22,-21,16,-24,16,-25,-17,-18,16,-16,-14,-19,-15,16,]),'NUMERIC_CONSTANT':([0,9,10,11,12,13,14,15,16,17,18,19,22,25,26,32,37,38,],[3,-10,3,3,3,3,3,3,-9,3,-11,3,-13,3,-8,-12,-6,-7,]),'BOOLEAN_CONSTANT':([0,],[8,]),'MINUS':([1,2,3,4,6,7,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,19,-24,-25,-17,-18,19,-16,19,-14,19,-15,19,]),'THAN':([1,2,3,4,6,7,9,12,16,21,23,24,25,28,31,33,34,35,],[-20,-23,-22,-21,18,-24,22,18,32,-25,-17,-18,18,-16,-14,-19,-15,18,]),'$end':([1,2,3,4,5,7,8,20,21,23,24,27,28,29,31,33,34,36,],[-20,-23,-22,-21,0,-24,-5,-4,-25,-17,-18,-2,-16,-3,-14,-19,-15,-1,]),}
+_lr_action_items = {'AND':([3,5,6,7,8,9,11,26,27,28,29,30,31,33,34,37,38,39,41,43,44,46,],[12,-26,-25,-28,-9,-27,-24,-8,-29,-4,-2,12,-3,-21,-22,-6,-20,-7,-18,-23,-19,-5,]),'THEN':([3,5,6,7,8,9,11,26,27,28,29,31,33,34,37,38,39,41,43,44,46,],[13,-26,-25,-28,-9,-27,-24,-8,-29,-4,-2,-3,-21,-22,-6,-20,-7,-18,-23,-19,-5,]),'CMP_GT':([4,5,6,7,9,11,18,27,33,34,35,38,41,43,44,45,],[15,-26,-25,-28,-27,-24,15,-29,-21,-22,15,-20,-18,-23,-19,15,]),'DIVIDE':([4,5,6,7,9,11,27,33,34,37,38,39,41,43,44,46,],[16,-26,-25,-28,-27,-24,-29,-21,-22,16,-20,16,16,16,16,16,]),'POWER':([4,5,6,7,9,11,27,33,34,37,38,39,41,43,44,46,],[17,-26,-25,-28,-27,-24,-29,17,17,17,17,17,17,17,17,17,]),'MINUS':([4,5,6,7,9,11,27,33,34,37,38,39,41,43,44,46,],[25,-26,-25,-28,-27,-24,-29,-21,-22,25,-20,25,-18,25,-19,25,]),'MOD':([4,5,6,7,9,11,27,33,34,37,38,39,41,43,44,46,],[23,-26,-25,-28,-27,-24,-29,-21,-22,23,-20,23,-18,23,-19,23,]),'EVENLY':([4,5,6,7,9,11,27,33,34,38,41,43,44,],[26,-26,-25,-28,-27,-24,-29,-21,-22,-20,-18,-23,-19,]),'EQUALS':([4,5,6,7,9,11,18,27,33,34,35,38,40,41,43,44,45,],[18,-26,-25,-28,-27,-24,35,-29,-21,-22,45,-20,47,-18,-23,-19,45,]),'TIMES':([4,5,6,7,9,11,27,33,34,37,38,39,41,43,44,46,],[19,-26,-25,-28,-27,-24,-29,-21,-22,19,-20,19,19,19,19,19,]),'NUMERIC_CONSTANT':([2,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,32,35,36,42,47,48,],[5,5,5,5,5,-14,5,5,5,5,5,5,-13,5,-15,5,-17,5,-12,-16,-10,-11,]),'TO':([47,],[48,]),'UNWORD':([2,7,10,12,13,14,15,16,17,18,19,20,21,22,23,24,25,32,35,36,42,47,48,],[7,7,7,7,7,7,-14,7,7,7,7,7,7,-13,7,-15,7,-17,7,-12,-16,-10,-11,]),'PLUS':([4,5,6,7,9,11,27,33,34,37,38,39,41,43,44,46,],[21,-26,-25,-28,-27,-24,-29,-21,-22,21,-20,21,-18,21,-19,21,]),'CMP_LT':([4,5,6,7,9,11,18,27,33,34,35,38,41,43,44,45,],[22,-26,-25,-28,-27,-24,22,-29,-21,-22,22,-20,-18,-23,-19,22,]),'IF':([0,],[2,]),'NOT':([2,10,12,13,14,],[10,10,10,10,10,]),'BOOLEAN_CONSTANT':([2,10,12,13,14,],[8,8,8,8,8,]),'THAN':([4,5,6,7,9,11,15,18,22,27,33,34,35,38,41,43,44,45,],[24,-26,-25,-28,-27,-24,32,24,42,-29,-21,-22,24,-20,-18,-23,-19,24,]),'OR':([3,5,6,7,8,9,11,15,20,22,24,26,27,28,29,30,31,32,33,34,36,37,38,39,41,42,43,44,46,47,48,],[14,-26,-25,-28,-9,-27,-24,-14,40,-13,-15,-8,-29,-4,-2,14,-3,-17,-21,-22,40,-6,-20,-7,-18,-16,-23,-19,-5,-10,-11,]),'$end':([1,5,6,7,8,9,11,26,27,28,29,30,31,33,34,37,38,39,41,43,44,46,],[0,-26,-25,-28,-9,-27,-24,-8,-29,-4,-2,-1,-3,-21,-22,-6,-20,-7,-18,-23,-19,-5,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'proposition':([0,],[5,]),'identifier_content':([0,7,10,11,12,13,14,15,17,19,25,],[2,21,2,2,2,2,2,2,2,2,2,]),'numeric_expression':([0,10,11,12,13,14,15,17,19,25,],[6,23,24,27,28,29,31,33,34,36,]),'inequality':([6,12,25,35,],[14,26,26,26,]),'numeric_const':([0,10,11,12,13,14,15,17,19,25,],[4,4,4,4,4,4,4,4,4,4,]),'identifier':([0,10,11,12,13,14,15,17,19,25,],[1,1,1,1,1,1,1,1,1,1,]),}
+_lr_goto_items = {'identifier_content':([2,7,10,12,13,14,16,17,18,19,20,21,23,25,35,],[9,27,9,9,9,9,9,9,9,9,9,9,9,9,9,]),'numeric_const':([2,10,12,13,14,16,17,18,19,20,21,23,25,35,],[6,6,6,6,6,6,6,6,6,6,6,6,6,6,]),'proposition':([2,10,12,13,14,],[3,28,29,30,31,]),'numeric_expression':([2,10,12,13,14,16,17,18,19,20,21,23,25,35,],[4,4,4,4,4,33,34,37,38,39,41,43,44,46,]),'back_utilization':([0,],[1,]),'identifier':([2,10,12,13,14,16,17,18,19,20,21,23,25,35,],[11,11,11,11,11,11,11,11,11,11,11,11,11,11,]),'inequality':([4,18,35,45,],[20,36,36,36,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,30 +26,34 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> proposition","S'",1,None,None,None),
-  ('proposition -> numeric_expression EQUALS EQUALS numeric_expression','proposition',4,'p_proposition','parser.py',71),
-  ('proposition -> numeric_expression EQUALS numeric_expression','proposition',3,'p_proposition','parser.py',72),
-  ('proposition -> numeric_expression inequality numeric_expression','proposition',3,'p_proposition','parser.py',73),
-  ('proposition -> numeric_expression EVENLY','proposition',2,'p_proposition','parser.py',74),
-  ('proposition -> BOOLEAN_CONSTANT','proposition',1,'p_proposition','parser.py',75),
-  ('inequality -> inequality OR EQUALS','inequality',3,'p_proper_inequality','parser.py',98),
-  ('inequality -> inequality OR EQUALS TO','inequality',4,'p_proper_inequality','parser.py',99),
-  ('inequality -> EQUALS inequality','inequality',2,'p_inequality_cut_is','parser.py',104),
-  ('inequality -> CMP_LT','inequality',1,'p_inequality','parser.py',111),
-  ('inequality -> CMP_GT','inequality',1,'p_inequality','parser.py',112),
-  ('inequality -> THAN','inequality',1,'p_inequality','parser.py',113),
-  ('inequality -> CMP_LT THAN','inequality',2,'p_inequality','parser.py',114),
-  ('inequality -> CMP_GT THAN','inequality',2,'p_inequality','parser.py',115),
-  ('numeric_expression -> numeric_expression PLUS numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',120),
-  ('numeric_expression -> numeric_expression MINUS numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',121),
-  ('numeric_expression -> numeric_expression TIMES numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',122),
-  ('numeric_expression -> numeric_expression DIVIDE numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',123),
-  ('numeric_expression -> numeric_expression POWER numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',124),
-  ('numeric_expression -> numeric_expression MOD numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',125),
-  ('numeric_expression -> identifier','numeric_expression',1,'p_numeric_expression','parser.py',126),
-  ('numeric_expression -> numeric_const','numeric_expression',1,'p_numeric_expression','parser.py',127),
-  ('numeric_const -> NUMERIC_CONSTANT','numeric_const',1,'p_numeric_const','parser.py',136),
-  ('identifier -> identifier_content','identifier',1,'p_identifier','parser.py',141),
-  ('identifier_content -> UNWORD','identifier_content',1,'p_identifier_content','parser.py',148),
-  ('identifier_content -> UNWORD identifier_content','identifier_content',2,'p_identifier_content','parser.py',149),
+  ("S' -> back_utilization","S'",1,None,None,None),
+  ('back_utilization -> IF proposition THEN proposition','back_utilization',4,'p_back_utilization','parser.py',80),
+  ('proposition -> proposition AND proposition','proposition',3,'p_high_poposition','parser.py',86),
+  ('proposition -> proposition OR proposition','proposition',3,'p_high_poposition','parser.py',87),
+  ('proposition -> NOT proposition','proposition',2,'p_high_poposition','parser.py',88),
+  ('proposition -> numeric_expression EQUALS EQUALS numeric_expression','proposition',4,'p_proposition','parser.py',101),
+  ('proposition -> numeric_expression EQUALS numeric_expression','proposition',3,'p_proposition','parser.py',102),
+  ('proposition -> numeric_expression inequality numeric_expression','proposition',3,'p_proposition','parser.py',103),
+  ('proposition -> numeric_expression EVENLY','proposition',2,'p_proposition','parser.py',104),
+  ('proposition -> BOOLEAN_CONSTANT','proposition',1,'p_proposition','parser.py',105),
+  ('inequality -> inequality OR EQUALS','inequality',3,'p_proper_inequality','parser.py',128),
+  ('inequality -> inequality OR EQUALS TO','inequality',4,'p_proper_inequality','parser.py',129),
+  ('inequality -> EQUALS inequality','inequality',2,'p_inequality_cut_is','parser.py',134),
+  ('inequality -> CMP_LT','inequality',1,'p_inequality','parser.py',141),
+  ('inequality -> CMP_GT','inequality',1,'p_inequality','parser.py',142),
+  ('inequality -> THAN','inequality',1,'p_inequality','parser.py',143),
+  ('inequality -> CMP_LT THAN','inequality',2,'p_inequality','parser.py',144),
+  ('inequality -> CMP_GT THAN','inequality',2,'p_inequality','parser.py',145),
+  ('numeric_expression -> numeric_expression PLUS numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',150),
+  ('numeric_expression -> numeric_expression MINUS numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',151),
+  ('numeric_expression -> numeric_expression TIMES numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',152),
+  ('numeric_expression -> numeric_expression DIVIDE numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',153),
+  ('numeric_expression -> numeric_expression POWER numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',154),
+  ('numeric_expression -> numeric_expression MOD numeric_expression','numeric_expression',3,'p_numeric_expression','parser.py',155),
+  ('numeric_expression -> identifier','numeric_expression',1,'p_numeric_expression','parser.py',156),
+  ('numeric_expression -> numeric_const','numeric_expression',1,'p_numeric_expression','parser.py',157),
+  ('numeric_const -> NUMERIC_CONSTANT','numeric_const',1,'p_numeric_const','parser.py',166),
+  ('identifier -> identifier_content','identifier',1,'p_identifier','parser.py',171),
+  ('identifier_content -> UNWORD','identifier_content',1,'p_identifier_content','parser.py',178),
+  ('identifier_content -> UNWORD identifier_content','identifier_content',2,'p_identifier_content','parser.py',179),
 ]

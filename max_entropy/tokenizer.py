@@ -1,12 +1,15 @@
 
+from nltk.stem.porter import *
 
 import sys
 import ply.lex as lex
 
-from nltk.stem.porter import *
 
 
-STEMMER_ENABLED = False
+import regex
+
+
+STEMMER_ENABLED = True
 
 class False_Stemmer:
     stem = lambda self, x : x
@@ -17,18 +20,20 @@ stemmer = PorterStemmer() if STEMMER_ENABLED else False_Stemmer()
 def gen_token( forms, use_stemmer = False ):
 
     if use_stemmer:
-        forms = map( stemmer.stem, forms )
+        forms += map( stemmer.stem, forms )
 
-    forms = map( lambda form : '(' + form + ')', forms )
-
-    return '|'.join( forms )
+    return forms
 
 
 def stop_filter( words ):
 
-    stop_words = { 'a' }
+    stop_words = { 'a', 'than', 'by' }
 
     return filter( lambda w : w not in stop_words, words)
+
+def stem_sentence ( sentence ):
+
+    return ' '.join( map( stemmer.stem, stop_filter( sentence.split() ) ) )
 
 
 class Aggro_Tokenizer:
@@ -42,45 +47,47 @@ class Aggro_Tokenizer:
     #  - - - Tokens - - -
     # --------------------
 
-    tokens = (
-        'IF','THEN', 'ELSE', 'OTHERWISE',
-        'NOT', 'AND', 'OR',
-        'PLUS','MINUS','TIMES','DIVIDE','POWER','MOD','BY',
-        'EQUALS', 'CMP_LT', 'CMP_GT', 'THAN', 'TO', 'EVENLY',
-        'BOOLEAN_CONSTANT', 'NUMERIC_CONSTANT',
+    reserved = {
+
+        'IF'        : gen_token( ['if'],        True ),
+        'THEN'      : gen_token( ['then'],      True ), 
+        'ELSE'      : gen_token( ['else'],      True ), 
+        'OTHERWISE' : gen_token( ['otherwise'], True ),
+
+        'NOT'    : gen_token(['not'], True ), 
+        'AND'    : gen_token(['and'], True ), 
+        'OR'     : gen_token(['or'],  True ),
+
+        'PLUS'   : gen_token( [ 'plus', 'add'                 ], True ),
+        'MINUS'  : gen_token( [ 'minus', 'subtract'           ], True ),
+        'TIMES'  : gen_token( [ 'times', 'multiply'           ], True ),
+        'DIVIDE' : gen_token( [ 'divide','over'               ], True ),
+        'POWER'  : gen_token( [ 'power', 'power'              ], True ),
+        'MOD'    : gen_token( [ 'mod', 'modulus', 'remainder' ], True ),
+
+        'EQUALS' : gen_token(['is','equals'], True ),
+        
+        'CMP_LT' : gen_token(['less'],    True ),
+        'CMP_GT' : gen_token(['greater'], True ),
+
+        'THAN'   : gen_token( [ 'than' ],   True ),
+        'BY'     : gen_token( [ 'by' ],     True ),
+        'TO'     : gen_token( [ 'to' ],     True ),
+        'EVENLY' : gen_token( [ 'evenly' ], True ),
+
+        'BOOLEAN_CONSTANT' : gen_token( ['true', 'false'] )
+    }
+
+    tokens = [
+        
+        'NUMERIC_CONSTANT',
         'UNWORD'
-    )
+
+    ] + reserved.keys()
 
     # ----------------------------
     #  - - - Basic Patterns - - -
     # ----------------------------
-
-    t_IF        = gen_token( ['if'],        True )
-    t_THEN      = gen_token( ['then'],      True )
-    t_ELSE      = gen_token( ['else'],      True )
-    t_OTHERWISE = gen_token( ['otherwise'], True )
-
-    t_PLUS    = gen_token( [ 'plus', 'add'       ], True )
-    t_MINUS   = gen_token( [ 'minus', 'subtract' ], True )
-    t_TIMES   = gen_token( [ 'times', 'multiply' ], True )
-    t_DIVIDE  = gen_token( [ 'divide','over'     ], True )
-    t_POWER   = gen_token( [ 'power', 'power'    ], True )
-    t_MOD     = gen_token( [ 'mod', 'modulus', 'remainder' ], True )
-    t_EVENLY  = gen_token( [ 'evenly' ], True )
-    t_THAN    = gen_token( [ 'than' ], True )
-    t_TO      = gen_token( [ 'to' ], True )
-
-    t_NOT = gen_token(['not'], True )
-    t_AND = gen_token(['and'], True )
-    t_OR  = gen_token(['or'],  True )
-
-    t_EQUALS = gen_token(['is','equals'], True )
-    t_CMP_LT = gen_token(['less'],    True )
-    t_CMP_GT = gen_token(['greater'], True )
-
-    t_BOOLEAN_CONSTANT = r'true|false'
-
-    t_UNWORD = r'[a-z\']+'
 
     t_ignore = ' \t,.!'
 
@@ -104,6 +111,18 @@ class Aggro_Tokenizer:
     # ----------------------
     #  - - - Specials - - -
     # ----------------------
+
+    def t_UNWORD ( self, t ):
+        r'[a-z\']+'
+
+        for k in Aggro_Tokenizer.reserved.keys():
+
+            if t.value in Aggro_Tokenizer.reserved[k]:
+
+                t.type = k
+                break
+
+        return t
 
     def t_newline(self, t):
         r'\n+'
