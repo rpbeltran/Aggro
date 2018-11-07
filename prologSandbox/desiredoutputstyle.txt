@@ -1,0 +1,69 @@
+#######################################################################################
+#######################################################################################
+Hungry dogs bark. Doug is a hungry dog. Does Doug bark?
+#######################################################################################
+Hungry dogs bark.
+ADJ NOUN VERB
+ADJ(NOUN) -> VERB(NOUN)
+H(x) = x is hungry
+D(x) = x is a dog
+B(x) = x barks
+Ax((HxDx) -> Bx)
+
+bark(X) :- 
+	hungry(X)
+	,
+	dog(X)
+.
+
+Doug is a hungry dog.
+IDENTIFIER is EXISTENTIAL ADJ NOUN
+
+hungry(doug).
+dog(doug).
+
+Does Doug bark?
+QUERY IDENTIFIER VERB
+
+##POST LOAD##
+bark(doug).
+
+RETURN THE ANSWER
+
+#######################################################################################
+#######################################################################################
+Not all moose, cows and pigeons smell fishy. Can a moose smell fishy?
+#######################################################################################
+NEG UNIVERSAL NOUN NOUN NOUN VERB ADJECTIVE
+Not entirely sure how to handle this one.
+	Either write a catch statement where if one moose or other is instantiated that is smelly, make a second one that isn't.
+	PREFERABLY just be sloppy and instantiate a non-smelly moose right then and there.
+
+
+Can a moose smell fishy?
+QUERY EXIST NOUN VERB ADJ
+
+Drop the adj?
+
+##POST LOAD##
+M(X), S(X).
+
+#######################################################################################
+#######################################################################################
+Cows, moose and pigeons will not raid garbage cans unless hungry.
+#######################################################################################
+NOUN NOUN NOUN VERB NEG VERB ADJ NOUN NEG ADJ
+
+raid(X,Y):-
+	can(Y) , hungry(X), cows(X)
+	;
+	can(Y) , hungry(X), moose(X)
+	;
+	can(Y) , hungry(X), pigeons(X)
+.
+#######################################################################################
+#######################################################################################
+Only dogs bark.
+#######################################################################################
+??? NOUN VERB
+bark(X) :- dog(X).
