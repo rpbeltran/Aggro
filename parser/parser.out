@@ -1,0 +1,2646 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    OTHERWISE
+    ELSE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> sentence
+Rule 2     program -> sentence program
+Rule 3     sentence -> proposition SENTENCE_END
+Rule 4     sentence -> EQUALS proposition SENTENCE_END
+Rule 5     sentence -> DOES proposition SENTENCE_END
+Rule 6     sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END
+Rule 7     sentence -> EQUALS identifier SENTENCE_END
+Rule 8     sentence -> DOES identifier SENTENCE_END
+Rule 9     sentence -> proposition IF proposition SENTENCE_END
+Rule 10    sentence -> proposition IMPLIES proposition SENTENCE_END
+Rule 11    sentence -> IF proposition THEN proposition SENTENCE_END
+Rule 12    proposition -> proposition AND proposition
+Rule 13    proposition -> NOT proposition
+Rule 14    proposition -> proposition OR proposition
+Rule 15    proposition -> numeric_expression DIVIDES numeric_expression
+Rule 16    proposition -> numeric_expression DIVIDES numeric_expression EVENLY
+Rule 17    proposition -> numeric_expression NOT DIVIDE numeric_expression
+Rule 18    proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY
+Rule 19    proposition -> numeric_expression DOES NOT DIVIDE numeric_expression
+Rule 20    proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+Rule 21    proposition -> numeric_expression EQUALS EQUALS numeric_expression
+Rule 22    proposition -> numeric_expression EQUALS numeric_expression
+Rule 23    proposition -> TRUE
+Rule 24    proposition -> numeric_expression inequality numeric_expression
+Rule 25    proposition -> FALSE
+Rule 26    inequality -> inequality OR EQUALS
+Rule 27    inequality -> inequality OR EQUALS TO
+Rule 28    inequality -> EQUALS inequality
+Rule 29    inequality -> CMP_LT
+Rule 30    inequality -> CMP_GT
+Rule 31    inequality -> THAN
+Rule 32    inequality -> CMP_LT THAN
+Rule 33    inequality -> CMP_GT THAN
+Rule 34    numeric_expression -> numeric_expression PLUS numeric_expression
+Rule 35    numeric_expression -> numeric_expression MINUS numeric_expression
+Rule 36    numeric_expression -> numeric_expression TIMES numeric_expression
+Rule 37    numeric_expression -> numeric_expression TIMES BY numeric_expression
+Rule 38    numeric_expression -> numeric_expression DIVIDE numeric_expression
+Rule 39    numeric_expression -> numeric_expression DIVIDE BY numeric_expression
+Rule 40    numeric_expression -> numeric_expression POWER numeric_expression
+Rule 41    numeric_expression -> numeric_expression MOD numeric_expression
+Rule 42    numeric_expression -> identifier
+Rule 43    numeric_expression -> numeric_const
+Rule 44    numeric_const -> NUMERIC_CONSTANT
+Rule 45    identifier -> identifier_content
+Rule 46    identifier -> A identifier_content
+Rule 47    identifier -> THE identifier_content
+Rule 48    identifier_content -> UNWORD
+Rule 49    identifier_content -> UNWORD identifier_content
+
+Terminals, with rules where they appear
+
+A                    : 46
+AND                  : 12
+BY                   : 37 39
+CMP_GT               : 30 33
+CMP_LT               : 29 32
+DIVIDE               : 17 18 19 20 38 39
+DIVIDES              : 15 16
+DOES                 : 5 8 19 20
+ELSE                 : 
+EQUALS               : 4 6 7 21 21 22 26 27 28
+EVENLY               : 16 18 20
+FALSE                : 25
+IF                   : 9 11
+IMPLIES              : 10
+MINUS                : 35
+MOD                  : 41
+NOT                  : 13 17 18 19 20
+NUMERIC_CONSTANT     : 44
+OR                   : 14 26 27
+OTHERWISE            : 
+PLUS                 : 34
+POWER                : 40
+SENTENCE_END         : 3 4 5 6 7 8 9 10 11
+THAN                 : 31 32 33
+THE                  : 47
+THEN                 : 11
+TIMES                : 36 37
+TO                   : 27
+TRUE                 : 23
+UNWORD               : 48 49
+error                : 
+
+Nonterminals, with rules where they appear
+
+identifier           : 7 8 42
+identifier_content   : 45 46 47 49
+inequality           : 24 26 27 28
+numeric_const        : 43
+numeric_expression   : 6 6 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 24 24 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41
+program              : 2 0
+proposition          : 3 4 5 9 9 10 10 11 11 12 12 13 14 14
+sentence             : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . sentence
+    (2) program -> . sentence program
+    (3) sentence -> . proposition SENTENCE_END
+    (4) sentence -> . EQUALS proposition SENTENCE_END
+    (5) sentence -> . DOES proposition SENTENCE_END
+    (6) sentence -> . EQUALS numeric_expression numeric_expression SENTENCE_END
+    (7) sentence -> . EQUALS identifier SENTENCE_END
+    (8) sentence -> . DOES identifier SENTENCE_END
+    (9) sentence -> . proposition IF proposition SENTENCE_END
+    (10) sentence -> . proposition IMPLIES proposition SENTENCE_END
+    (11) sentence -> . IF proposition THEN proposition SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    EQUALS          shift and go to state 9
+    DOES            shift and go to state 8
+    IF              shift and go to state 13
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    program                        shift and go to state 5
+    sentence                       shift and go to state 1
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 2
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 1
+
+    (1) program -> sentence .
+    (2) program -> sentence . program
+    (1) program -> . sentence
+    (2) program -> . sentence program
+    (3) sentence -> . proposition SENTENCE_END
+    (4) sentence -> . EQUALS proposition SENTENCE_END
+    (5) sentence -> . DOES proposition SENTENCE_END
+    (6) sentence -> . EQUALS numeric_expression numeric_expression SENTENCE_END
+    (7) sentence -> . EQUALS identifier SENTENCE_END
+    (8) sentence -> . DOES identifier SENTENCE_END
+    (9) sentence -> . proposition IF proposition SENTENCE_END
+    (10) sentence -> . proposition IMPLIES proposition SENTENCE_END
+    (11) sentence -> . IF proposition THEN proposition SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    $end            reduce using rule 1 (program -> sentence .)
+    EQUALS          shift and go to state 9
+    DOES            shift and go to state 8
+    IF              shift and go to state 13
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    program                        shift and go to state 18
+    sentence                       shift and go to state 1
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 2
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 2
+
+    (3) sentence -> proposition . SENTENCE_END
+    (9) sentence -> proposition . IF proposition SENTENCE_END
+    (10) sentence -> proposition . IMPLIES proposition SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    SENTENCE_END    shift and go to state 21
+    IF              shift and go to state 23
+    IMPLIES         shift and go to state 20
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 3
+
+    (15) proposition -> numeric_expression . DIVIDES numeric_expression
+    (16) proposition -> numeric_expression . DIVIDES numeric_expression EVENLY
+    (17) proposition -> numeric_expression . NOT DIVIDE numeric_expression
+    (18) proposition -> numeric_expression . NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> numeric_expression . DOES NOT DIVIDE numeric_expression
+    (20) proposition -> numeric_expression . DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> numeric_expression . EQUALS EQUALS numeric_expression
+    (22) proposition -> numeric_expression . EQUALS numeric_expression
+    (24) proposition -> numeric_expression . inequality numeric_expression
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+    (26) inequality -> . inequality OR EQUALS
+    (27) inequality -> . inequality OR EQUALS TO
+    (28) inequality -> . EQUALS inequality
+    (29) inequality -> . CMP_LT
+    (30) inequality -> . CMP_GT
+    (31) inequality -> . THAN
+    (32) inequality -> . CMP_LT THAN
+    (33) inequality -> . CMP_GT THAN
+
+    DIVIDES         shift and go to state 37
+    NOT             shift and go to state 31
+    DOES            shift and go to state 32
+    EQUALS          shift and go to state 28
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+    CMP_LT          shift and go to state 25
+    CMP_GT          shift and go to state 24
+    THAN            shift and go to state 29
+
+    inequality                     shift and go to state 36
+
+state 4
+
+    (23) proposition -> TRUE .
+
+    AND             reduce using rule 23 (proposition -> TRUE .)
+    OR              reduce using rule 23 (proposition -> TRUE .)
+    SENTENCE_END    reduce using rule 23 (proposition -> TRUE .)
+    IF              reduce using rule 23 (proposition -> TRUE .)
+    IMPLIES         reduce using rule 23 (proposition -> TRUE .)
+    THEN            reduce using rule 23 (proposition -> TRUE .)
+
+
+state 5
+
+    (0) S' -> program .
+
+
+
+state 6
+
+    (43) numeric_expression -> numeric_const .
+
+    DIVIDES         reduce using rule 43 (numeric_expression -> numeric_const .)
+    NOT             reduce using rule 43 (numeric_expression -> numeric_const .)
+    DOES            reduce using rule 43 (numeric_expression -> numeric_const .)
+    EQUALS          reduce using rule 43 (numeric_expression -> numeric_const .)
+    PLUS            reduce using rule 43 (numeric_expression -> numeric_const .)
+    MINUS           reduce using rule 43 (numeric_expression -> numeric_const .)
+    TIMES           reduce using rule 43 (numeric_expression -> numeric_const .)
+    DIVIDE          reduce using rule 43 (numeric_expression -> numeric_const .)
+    POWER           reduce using rule 43 (numeric_expression -> numeric_const .)
+    MOD             reduce using rule 43 (numeric_expression -> numeric_const .)
+    CMP_LT          reduce using rule 43 (numeric_expression -> numeric_const .)
+    CMP_GT          reduce using rule 43 (numeric_expression -> numeric_const .)
+    THAN            reduce using rule 43 (numeric_expression -> numeric_const .)
+    EVENLY          reduce using rule 43 (numeric_expression -> numeric_const .)
+    SENTENCE_END    reduce using rule 43 (numeric_expression -> numeric_const .)
+    IF              reduce using rule 43 (numeric_expression -> numeric_const .)
+    IMPLIES         reduce using rule 43 (numeric_expression -> numeric_const .)
+    AND             reduce using rule 43 (numeric_expression -> numeric_const .)
+    OR              reduce using rule 43 (numeric_expression -> numeric_const .)
+    THEN            reduce using rule 43 (numeric_expression -> numeric_const .)
+    A               reduce using rule 43 (numeric_expression -> numeric_const .)
+    THE             reduce using rule 43 (numeric_expression -> numeric_const .)
+    NUMERIC_CONSTANT reduce using rule 43 (numeric_expression -> numeric_const .)
+    UNWORD          reduce using rule 43 (numeric_expression -> numeric_const .)
+
+
+state 7
+
+    (46) identifier -> A . identifier_content
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 38
+
+state 8
+
+    (5) sentence -> DOES . proposition SENTENCE_END
+    (8) sentence -> DOES . identifier SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    UNWORD          shift and go to state 11
+    NUMERIC_CONSTANT shift and go to state 10
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 39
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 40
+
+state 9
+
+    (4) sentence -> EQUALS . proposition SENTENCE_END
+    (6) sentence -> EQUALS . numeric_expression numeric_expression SENTENCE_END
+    (7) sentence -> EQUALS . identifier SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 41
+    numeric_expression             shift and go to state 42
+    identifier                     shift and go to state 43
+
+state 10
+
+    (44) numeric_const -> NUMERIC_CONSTANT .
+
+    SENTENCE_END    reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    PLUS            reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    MINUS           reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    TIMES           reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    DIVIDE          reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    POWER           reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    MOD             reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    DIVIDES         reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    NOT             reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    DOES            reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    EQUALS          reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    CMP_LT          reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    CMP_GT          reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    THAN            reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    A               reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    THE             reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    NUMERIC_CONSTANT reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    UNWORD          reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    IF              reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    IMPLIES         reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    AND             reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    OR              reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    THEN            reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+    EVENLY          reduce using rule 44 (numeric_const -> NUMERIC_CONSTANT .)
+
+
+state 11
+
+    (48) identifier_content -> UNWORD .
+    (49) identifier_content -> UNWORD . identifier_content
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+  ! shift/reduce conflict for UNWORD resolved as shift
+    EVENLY          reduce using rule 48 (identifier_content -> UNWORD .)
+    PLUS            reduce using rule 48 (identifier_content -> UNWORD .)
+    MINUS           reduce using rule 48 (identifier_content -> UNWORD .)
+    TIMES           reduce using rule 48 (identifier_content -> UNWORD .)
+    DIVIDE          reduce using rule 48 (identifier_content -> UNWORD .)
+    POWER           reduce using rule 48 (identifier_content -> UNWORD .)
+    MOD             reduce using rule 48 (identifier_content -> UNWORD .)
+    SENTENCE_END    reduce using rule 48 (identifier_content -> UNWORD .)
+    IF              reduce using rule 48 (identifier_content -> UNWORD .)
+    IMPLIES         reduce using rule 48 (identifier_content -> UNWORD .)
+    AND             reduce using rule 48 (identifier_content -> UNWORD .)
+    OR              reduce using rule 48 (identifier_content -> UNWORD .)
+    THEN            reduce using rule 48 (identifier_content -> UNWORD .)
+    DIVIDES         reduce using rule 48 (identifier_content -> UNWORD .)
+    NOT             reduce using rule 48 (identifier_content -> UNWORD .)
+    DOES            reduce using rule 48 (identifier_content -> UNWORD .)
+    EQUALS          reduce using rule 48 (identifier_content -> UNWORD .)
+    CMP_LT          reduce using rule 48 (identifier_content -> UNWORD .)
+    CMP_GT          reduce using rule 48 (identifier_content -> UNWORD .)
+    THAN            reduce using rule 48 (identifier_content -> UNWORD .)
+    A               reduce using rule 48 (identifier_content -> UNWORD .)
+    THE             reduce using rule 48 (identifier_content -> UNWORD .)
+    NUMERIC_CONSTANT reduce using rule 48 (identifier_content -> UNWORD .)
+    UNWORD          shift and go to state 11
+
+  ! UNWORD          [ reduce using rule 48 (identifier_content -> UNWORD .) ]
+
+    identifier_content             shift and go to state 44
+
+state 12
+
+    (47) identifier -> THE . identifier_content
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 45
+
+state 13
+
+    (11) sentence -> IF . proposition THEN proposition SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 46
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 14
+
+    (25) proposition -> FALSE .
+
+    AND             reduce using rule 25 (proposition -> FALSE .)
+    OR              reduce using rule 25 (proposition -> FALSE .)
+    SENTENCE_END    reduce using rule 25 (proposition -> FALSE .)
+    IF              reduce using rule 25 (proposition -> FALSE .)
+    IMPLIES         reduce using rule 25 (proposition -> FALSE .)
+    THEN            reduce using rule 25 (proposition -> FALSE .)
+
+
+state 15
+
+    (45) identifier -> identifier_content .
+
+    PLUS            reduce using rule 45 (identifier -> identifier_content .)
+    MINUS           reduce using rule 45 (identifier -> identifier_content .)
+    TIMES           reduce using rule 45 (identifier -> identifier_content .)
+    DIVIDE          reduce using rule 45 (identifier -> identifier_content .)
+    POWER           reduce using rule 45 (identifier -> identifier_content .)
+    MOD             reduce using rule 45 (identifier -> identifier_content .)
+    DIVIDES         reduce using rule 45 (identifier -> identifier_content .)
+    NOT             reduce using rule 45 (identifier -> identifier_content .)
+    DOES            reduce using rule 45 (identifier -> identifier_content .)
+    EQUALS          reduce using rule 45 (identifier -> identifier_content .)
+    CMP_LT          reduce using rule 45 (identifier -> identifier_content .)
+    CMP_GT          reduce using rule 45 (identifier -> identifier_content .)
+    THAN            reduce using rule 45 (identifier -> identifier_content .)
+    A               reduce using rule 45 (identifier -> identifier_content .)
+    THE             reduce using rule 45 (identifier -> identifier_content .)
+    NUMERIC_CONSTANT reduce using rule 45 (identifier -> identifier_content .)
+    UNWORD          reduce using rule 45 (identifier -> identifier_content .)
+    SENTENCE_END    reduce using rule 45 (identifier -> identifier_content .)
+    IF              reduce using rule 45 (identifier -> identifier_content .)
+    IMPLIES         reduce using rule 45 (identifier -> identifier_content .)
+    AND             reduce using rule 45 (identifier -> identifier_content .)
+    OR              reduce using rule 45 (identifier -> identifier_content .)
+    THEN            reduce using rule 45 (identifier -> identifier_content .)
+    EVENLY          reduce using rule 45 (identifier -> identifier_content .)
+
+
+state 16
+
+    (13) proposition -> NOT . proposition
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 47
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 17
+
+    (42) numeric_expression -> identifier .
+
+    DIVIDES         reduce using rule 42 (numeric_expression -> identifier .)
+    NOT             reduce using rule 42 (numeric_expression -> identifier .)
+    DOES            reduce using rule 42 (numeric_expression -> identifier .)
+    EQUALS          reduce using rule 42 (numeric_expression -> identifier .)
+    PLUS            reduce using rule 42 (numeric_expression -> identifier .)
+    MINUS           reduce using rule 42 (numeric_expression -> identifier .)
+    TIMES           reduce using rule 42 (numeric_expression -> identifier .)
+    DIVIDE          reduce using rule 42 (numeric_expression -> identifier .)
+    POWER           reduce using rule 42 (numeric_expression -> identifier .)
+    MOD             reduce using rule 42 (numeric_expression -> identifier .)
+    CMP_LT          reduce using rule 42 (numeric_expression -> identifier .)
+    CMP_GT          reduce using rule 42 (numeric_expression -> identifier .)
+    THAN            reduce using rule 42 (numeric_expression -> identifier .)
+    EVENLY          reduce using rule 42 (numeric_expression -> identifier .)
+    SENTENCE_END    reduce using rule 42 (numeric_expression -> identifier .)
+    IF              reduce using rule 42 (numeric_expression -> identifier .)
+    IMPLIES         reduce using rule 42 (numeric_expression -> identifier .)
+    AND             reduce using rule 42 (numeric_expression -> identifier .)
+    OR              reduce using rule 42 (numeric_expression -> identifier .)
+    THEN            reduce using rule 42 (numeric_expression -> identifier .)
+    A               reduce using rule 42 (numeric_expression -> identifier .)
+    THE             reduce using rule 42 (numeric_expression -> identifier .)
+    NUMERIC_CONSTANT reduce using rule 42 (numeric_expression -> identifier .)
+    UNWORD          reduce using rule 42 (numeric_expression -> identifier .)
+
+
+state 18
+
+    (2) program -> sentence program .
+
+    $end            reduce using rule 2 (program -> sentence program .)
+
+
+state 19
+
+    (12) proposition -> proposition AND . proposition
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 48
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 20
+
+    (10) sentence -> proposition IMPLIES . proposition SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 49
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 21
+
+    (3) sentence -> proposition SENTENCE_END .
+
+    EQUALS          reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    DOES            reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    IF              reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    NOT             reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    TRUE            reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    FALSE           reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    A               reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    THE             reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    UNWORD          reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+    $end            reduce using rule 3 (sentence -> proposition SENTENCE_END .)
+
+
+state 22
+
+    (14) proposition -> proposition OR . proposition
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 50
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 23
+
+    (9) sentence -> proposition IF . proposition SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 51
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 24
+
+    (30) inequality -> CMP_GT .
+    (33) inequality -> CMP_GT . THAN
+
+    OR              reduce using rule 30 (inequality -> CMP_GT .)
+    A               reduce using rule 30 (inequality -> CMP_GT .)
+    THE             reduce using rule 30 (inequality -> CMP_GT .)
+    NUMERIC_CONSTANT reduce using rule 30 (inequality -> CMP_GT .)
+    UNWORD          reduce using rule 30 (inequality -> CMP_GT .)
+    THAN            shift and go to state 52
+
+
+state 25
+
+    (29) inequality -> CMP_LT .
+    (32) inequality -> CMP_LT . THAN
+
+    OR              reduce using rule 29 (inequality -> CMP_LT .)
+    A               reduce using rule 29 (inequality -> CMP_LT .)
+    THE             reduce using rule 29 (inequality -> CMP_LT .)
+    NUMERIC_CONSTANT reduce using rule 29 (inequality -> CMP_LT .)
+    UNWORD          reduce using rule 29 (inequality -> CMP_LT .)
+    THAN            shift and go to state 53
+
+
+state 26
+
+    (38) numeric_expression -> numeric_expression DIVIDE . numeric_expression
+    (39) numeric_expression -> numeric_expression DIVIDE . BY numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    BY              shift and go to state 55
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 54
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 27
+
+    (40) numeric_expression -> numeric_expression POWER . numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 56
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 28
+
+    (21) proposition -> numeric_expression EQUALS . EQUALS numeric_expression
+    (22) proposition -> numeric_expression EQUALS . numeric_expression
+    (28) inequality -> EQUALS . inequality
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (26) inequality -> . inequality OR EQUALS
+    (27) inequality -> . inequality OR EQUALS TO
+    (28) inequality -> . EQUALS inequality
+    (29) inequality -> . CMP_LT
+    (30) inequality -> . CMP_GT
+    (31) inequality -> . THAN
+    (32) inequality -> . CMP_LT THAN
+    (33) inequality -> . CMP_GT THAN
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    EQUALS          shift and go to state 58
+    CMP_LT          shift and go to state 25
+    CMP_GT          shift and go to state 24
+    THAN            shift and go to state 29
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 57
+    numeric_const                  shift and go to state 6
+    inequality                     shift and go to state 59
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 29
+
+    (31) inequality -> THAN .
+
+    OR              reduce using rule 31 (inequality -> THAN .)
+    A               reduce using rule 31 (inequality -> THAN .)
+    THE             reduce using rule 31 (inequality -> THAN .)
+    NUMERIC_CONSTANT reduce using rule 31 (inequality -> THAN .)
+    UNWORD          reduce using rule 31 (inequality -> THAN .)
+
+
+state 30
+
+    (35) numeric_expression -> numeric_expression MINUS . numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 60
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 31
+
+    (17) proposition -> numeric_expression NOT . DIVIDE numeric_expression
+    (18) proposition -> numeric_expression NOT . DIVIDE numeric_expression EVENLY
+
+    DIVIDE          shift and go to state 61
+
+
+state 32
+
+    (19) proposition -> numeric_expression DOES . NOT DIVIDE numeric_expression
+    (20) proposition -> numeric_expression DOES . NOT DIVIDE numeric_expression EVENLY
+
+    NOT             shift and go to state 62
+
+
+state 33
+
+    (34) numeric_expression -> numeric_expression PLUS . numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 63
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 34
+
+    (41) numeric_expression -> numeric_expression MOD . numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 64
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 35
+
+    (36) numeric_expression -> numeric_expression TIMES . numeric_expression
+    (37) numeric_expression -> numeric_expression TIMES . BY numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    BY              shift and go to state 66
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 65
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 36
+
+    (24) proposition -> numeric_expression inequality . numeric_expression
+    (26) inequality -> inequality . OR EQUALS
+    (27) inequality -> inequality . OR EQUALS TO
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    OR              shift and go to state 68
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 67
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 37
+
+    (15) proposition -> numeric_expression DIVIDES . numeric_expression
+    (16) proposition -> numeric_expression DIVIDES . numeric_expression EVENLY
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 69
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 38
+
+    (46) identifier -> A identifier_content .
+
+    PLUS            reduce using rule 46 (identifier -> A identifier_content .)
+    MINUS           reduce using rule 46 (identifier -> A identifier_content .)
+    TIMES           reduce using rule 46 (identifier -> A identifier_content .)
+    DIVIDE          reduce using rule 46 (identifier -> A identifier_content .)
+    POWER           reduce using rule 46 (identifier -> A identifier_content .)
+    MOD             reduce using rule 46 (identifier -> A identifier_content .)
+    DIVIDES         reduce using rule 46 (identifier -> A identifier_content .)
+    NOT             reduce using rule 46 (identifier -> A identifier_content .)
+    DOES            reduce using rule 46 (identifier -> A identifier_content .)
+    EQUALS          reduce using rule 46 (identifier -> A identifier_content .)
+    CMP_LT          reduce using rule 46 (identifier -> A identifier_content .)
+    CMP_GT          reduce using rule 46 (identifier -> A identifier_content .)
+    THAN            reduce using rule 46 (identifier -> A identifier_content .)
+    A               reduce using rule 46 (identifier -> A identifier_content .)
+    THE             reduce using rule 46 (identifier -> A identifier_content .)
+    NUMERIC_CONSTANT reduce using rule 46 (identifier -> A identifier_content .)
+    UNWORD          reduce using rule 46 (identifier -> A identifier_content .)
+    SENTENCE_END    reduce using rule 46 (identifier -> A identifier_content .)
+    IF              reduce using rule 46 (identifier -> A identifier_content .)
+    IMPLIES         reduce using rule 46 (identifier -> A identifier_content .)
+    AND             reduce using rule 46 (identifier -> A identifier_content .)
+    OR              reduce using rule 46 (identifier -> A identifier_content .)
+    THEN            reduce using rule 46 (identifier -> A identifier_content .)
+    EVENLY          reduce using rule 46 (identifier -> A identifier_content .)
+
+
+state 39
+
+    (5) sentence -> DOES proposition . SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    SENTENCE_END    shift and go to state 70
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 40
+
+    (8) sentence -> DOES identifier . SENTENCE_END
+    (42) numeric_expression -> identifier .
+
+    SENTENCE_END    shift and go to state 71
+    DIVIDES         reduce using rule 42 (numeric_expression -> identifier .)
+    NOT             reduce using rule 42 (numeric_expression -> identifier .)
+    DOES            reduce using rule 42 (numeric_expression -> identifier .)
+    EQUALS          reduce using rule 42 (numeric_expression -> identifier .)
+    PLUS            reduce using rule 42 (numeric_expression -> identifier .)
+    MINUS           reduce using rule 42 (numeric_expression -> identifier .)
+    TIMES           reduce using rule 42 (numeric_expression -> identifier .)
+    DIVIDE          reduce using rule 42 (numeric_expression -> identifier .)
+    POWER           reduce using rule 42 (numeric_expression -> identifier .)
+    MOD             reduce using rule 42 (numeric_expression -> identifier .)
+    CMP_LT          reduce using rule 42 (numeric_expression -> identifier .)
+    CMP_GT          reduce using rule 42 (numeric_expression -> identifier .)
+    THAN            reduce using rule 42 (numeric_expression -> identifier .)
+
+
+state 41
+
+    (4) sentence -> EQUALS proposition . SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    SENTENCE_END    shift and go to state 72
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 42
+
+    (6) sentence -> EQUALS numeric_expression . numeric_expression SENTENCE_END
+    (15) proposition -> numeric_expression . DIVIDES numeric_expression
+    (16) proposition -> numeric_expression . DIVIDES numeric_expression EVENLY
+    (17) proposition -> numeric_expression . NOT DIVIDE numeric_expression
+    (18) proposition -> numeric_expression . NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> numeric_expression . DOES NOT DIVIDE numeric_expression
+    (20) proposition -> numeric_expression . DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> numeric_expression . EQUALS EQUALS numeric_expression
+    (22) proposition -> numeric_expression . EQUALS numeric_expression
+    (24) proposition -> numeric_expression . inequality numeric_expression
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (26) inequality -> . inequality OR EQUALS
+    (27) inequality -> . inequality OR EQUALS TO
+    (28) inequality -> . EQUALS inequality
+    (29) inequality -> . CMP_LT
+    (30) inequality -> . CMP_GT
+    (31) inequality -> . THAN
+    (32) inequality -> . CMP_LT THAN
+    (33) inequality -> . CMP_GT THAN
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    DIVIDES         shift and go to state 37
+    NOT             shift and go to state 31
+    DOES            shift and go to state 32
+    EQUALS          shift and go to state 28
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+    CMP_LT          shift and go to state 25
+    CMP_GT          shift and go to state 24
+    THAN            shift and go to state 29
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 73
+    numeric_const                  shift and go to state 6
+    inequality                     shift and go to state 36
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 43
+
+    (7) sentence -> EQUALS identifier . SENTENCE_END
+    (42) numeric_expression -> identifier .
+
+    SENTENCE_END    shift and go to state 74
+    DIVIDES         reduce using rule 42 (numeric_expression -> identifier .)
+    NOT             reduce using rule 42 (numeric_expression -> identifier .)
+    DOES            reduce using rule 42 (numeric_expression -> identifier .)
+    EQUALS          reduce using rule 42 (numeric_expression -> identifier .)
+    PLUS            reduce using rule 42 (numeric_expression -> identifier .)
+    MINUS           reduce using rule 42 (numeric_expression -> identifier .)
+    TIMES           reduce using rule 42 (numeric_expression -> identifier .)
+    DIVIDE          reduce using rule 42 (numeric_expression -> identifier .)
+    POWER           reduce using rule 42 (numeric_expression -> identifier .)
+    MOD             reduce using rule 42 (numeric_expression -> identifier .)
+    CMP_LT          reduce using rule 42 (numeric_expression -> identifier .)
+    CMP_GT          reduce using rule 42 (numeric_expression -> identifier .)
+    THAN            reduce using rule 42 (numeric_expression -> identifier .)
+    A               reduce using rule 42 (numeric_expression -> identifier .)
+    THE             reduce using rule 42 (numeric_expression -> identifier .)
+    NUMERIC_CONSTANT reduce using rule 42 (numeric_expression -> identifier .)
+    UNWORD          reduce using rule 42 (numeric_expression -> identifier .)
+
+
+state 44
+
+    (49) identifier_content -> UNWORD identifier_content .
+
+    EVENLY          reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    PLUS            reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    MINUS           reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    TIMES           reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    DIVIDE          reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    POWER           reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    MOD             reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    SENTENCE_END    reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    IF              reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    IMPLIES         reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    AND             reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    OR              reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    THEN            reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    DIVIDES         reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    NOT             reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    DOES            reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    EQUALS          reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    CMP_LT          reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    CMP_GT          reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    THAN            reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    A               reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    THE             reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    NUMERIC_CONSTANT reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+    UNWORD          reduce using rule 49 (identifier_content -> UNWORD identifier_content .)
+
+
+state 45
+
+    (47) identifier -> THE identifier_content .
+
+    PLUS            reduce using rule 47 (identifier -> THE identifier_content .)
+    MINUS           reduce using rule 47 (identifier -> THE identifier_content .)
+    TIMES           reduce using rule 47 (identifier -> THE identifier_content .)
+    DIVIDE          reduce using rule 47 (identifier -> THE identifier_content .)
+    POWER           reduce using rule 47 (identifier -> THE identifier_content .)
+    MOD             reduce using rule 47 (identifier -> THE identifier_content .)
+    DIVIDES         reduce using rule 47 (identifier -> THE identifier_content .)
+    NOT             reduce using rule 47 (identifier -> THE identifier_content .)
+    DOES            reduce using rule 47 (identifier -> THE identifier_content .)
+    EQUALS          reduce using rule 47 (identifier -> THE identifier_content .)
+    CMP_LT          reduce using rule 47 (identifier -> THE identifier_content .)
+    CMP_GT          reduce using rule 47 (identifier -> THE identifier_content .)
+    THAN            reduce using rule 47 (identifier -> THE identifier_content .)
+    A               reduce using rule 47 (identifier -> THE identifier_content .)
+    THE             reduce using rule 47 (identifier -> THE identifier_content .)
+    NUMERIC_CONSTANT reduce using rule 47 (identifier -> THE identifier_content .)
+    UNWORD          reduce using rule 47 (identifier -> THE identifier_content .)
+    SENTENCE_END    reduce using rule 47 (identifier -> THE identifier_content .)
+    IF              reduce using rule 47 (identifier -> THE identifier_content .)
+    IMPLIES         reduce using rule 47 (identifier -> THE identifier_content .)
+    AND             reduce using rule 47 (identifier -> THE identifier_content .)
+    OR              reduce using rule 47 (identifier -> THE identifier_content .)
+    THEN            reduce using rule 47 (identifier -> THE identifier_content .)
+    EVENLY          reduce using rule 47 (identifier -> THE identifier_content .)
+
+
+state 46
+
+    (11) sentence -> IF proposition . THEN proposition SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    THEN            shift and go to state 75
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 47
+
+    (13) proposition -> NOT proposition .
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    AND             reduce using rule 13 (proposition -> NOT proposition .)
+    OR              reduce using rule 13 (proposition -> NOT proposition .)
+    SENTENCE_END    reduce using rule 13 (proposition -> NOT proposition .)
+    IF              reduce using rule 13 (proposition -> NOT proposition .)
+    IMPLIES         reduce using rule 13 (proposition -> NOT proposition .)
+    THEN            reduce using rule 13 (proposition -> NOT proposition .)
+
+  ! AND             [ shift and go to state 19 ]
+  ! OR              [ shift and go to state 22 ]
+
+
+state 48
+
+    (12) proposition -> proposition AND proposition .
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    AND             reduce using rule 12 (proposition -> proposition AND proposition .)
+    OR              reduce using rule 12 (proposition -> proposition AND proposition .)
+    SENTENCE_END    reduce using rule 12 (proposition -> proposition AND proposition .)
+    IF              reduce using rule 12 (proposition -> proposition AND proposition .)
+    IMPLIES         reduce using rule 12 (proposition -> proposition AND proposition .)
+    THEN            reduce using rule 12 (proposition -> proposition AND proposition .)
+
+  ! AND             [ shift and go to state 19 ]
+  ! OR              [ shift and go to state 22 ]
+
+
+state 49
+
+    (10) sentence -> proposition IMPLIES proposition . SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    SENTENCE_END    shift and go to state 76
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 50
+
+    (14) proposition -> proposition OR proposition .
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    AND             reduce using rule 14 (proposition -> proposition OR proposition .)
+    OR              reduce using rule 14 (proposition -> proposition OR proposition .)
+    SENTENCE_END    reduce using rule 14 (proposition -> proposition OR proposition .)
+    IF              reduce using rule 14 (proposition -> proposition OR proposition .)
+    IMPLIES         reduce using rule 14 (proposition -> proposition OR proposition .)
+    THEN            reduce using rule 14 (proposition -> proposition OR proposition .)
+
+  ! AND             [ shift and go to state 19 ]
+  ! OR              [ shift and go to state 22 ]
+
+
+state 51
+
+    (9) sentence -> proposition IF proposition . SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    SENTENCE_END    shift and go to state 77
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 52
+
+    (33) inequality -> CMP_GT THAN .
+
+    OR              reduce using rule 33 (inequality -> CMP_GT THAN .)
+    A               reduce using rule 33 (inequality -> CMP_GT THAN .)
+    THE             reduce using rule 33 (inequality -> CMP_GT THAN .)
+    NUMERIC_CONSTANT reduce using rule 33 (inequality -> CMP_GT THAN .)
+    UNWORD          reduce using rule 33 (inequality -> CMP_GT THAN .)
+
+
+state 53
+
+    (32) inequality -> CMP_LT THAN .
+
+    OR              reduce using rule 32 (inequality -> CMP_LT THAN .)
+    A               reduce using rule 32 (inequality -> CMP_LT THAN .)
+    THE             reduce using rule 32 (inequality -> CMP_LT THAN .)
+    NUMERIC_CONSTANT reduce using rule 32 (inequality -> CMP_LT THAN .)
+    UNWORD          reduce using rule 32 (inequality -> CMP_LT THAN .)
+
+
+state 54
+
+    (38) numeric_expression -> numeric_expression DIVIDE numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    DIVIDES         reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    NOT             reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    DOES            reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    EQUALS          reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    PLUS            reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    MINUS           reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    TIMES           reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    DIVIDE          reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    MOD             reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    CMP_LT          reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    CMP_GT          reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    THAN            reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    EVENLY          reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    SENTENCE_END    reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    IF              reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    IMPLIES         reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    AND             reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    OR              reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    THEN            reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    A               reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    THE             reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    UNWORD          reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .)
+    POWER           shift and go to state 27
+
+  ! POWER           [ reduce using rule 38 (numeric_expression -> numeric_expression DIVIDE numeric_expression .) ]
+  ! PLUS            [ shift and go to state 33 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! TIMES           [ shift and go to state 35 ]
+  ! DIVIDE          [ shift and go to state 26 ]
+  ! MOD             [ shift and go to state 34 ]
+
+
+state 55
+
+    (39) numeric_expression -> numeric_expression DIVIDE BY . numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 78
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 56
+
+    (40) numeric_expression -> numeric_expression POWER numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    DIVIDES         reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    NOT             reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    DOES            reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    EQUALS          reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    PLUS            reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    MINUS           reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    TIMES           reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    DIVIDE          reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    MOD             reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    CMP_LT          reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    CMP_GT          reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    THAN            reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    EVENLY          reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    SENTENCE_END    reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    IF              reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    IMPLIES         reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    AND             reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    OR              reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    THEN            reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    A               reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    THE             reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    UNWORD          reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .)
+    POWER           shift and go to state 27
+
+  ! POWER           [ reduce using rule 40 (numeric_expression -> numeric_expression POWER numeric_expression .) ]
+  ! PLUS            [ shift and go to state 33 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! TIMES           [ shift and go to state 35 ]
+  ! DIVIDE          [ shift and go to state 26 ]
+  ! MOD             [ shift and go to state 34 ]
+
+
+state 57
+
+    (22) proposition -> numeric_expression EQUALS numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    AND             reduce using rule 22 (proposition -> numeric_expression EQUALS numeric_expression .)
+    OR              reduce using rule 22 (proposition -> numeric_expression EQUALS numeric_expression .)
+    SENTENCE_END    reduce using rule 22 (proposition -> numeric_expression EQUALS numeric_expression .)
+    IF              reduce using rule 22 (proposition -> numeric_expression EQUALS numeric_expression .)
+    IMPLIES         reduce using rule 22 (proposition -> numeric_expression EQUALS numeric_expression .)
+    THEN            reduce using rule 22 (proposition -> numeric_expression EQUALS numeric_expression .)
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 58
+
+    (21) proposition -> numeric_expression EQUALS EQUALS . numeric_expression
+    (28) inequality -> EQUALS . inequality
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (26) inequality -> . inequality OR EQUALS
+    (27) inequality -> . inequality OR EQUALS TO
+    (28) inequality -> . EQUALS inequality
+    (29) inequality -> . CMP_LT
+    (30) inequality -> . CMP_GT
+    (31) inequality -> . THAN
+    (32) inequality -> . CMP_LT THAN
+    (33) inequality -> . CMP_GT THAN
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    EQUALS          shift and go to state 80
+    CMP_LT          shift and go to state 25
+    CMP_GT          shift and go to state 24
+    THAN            shift and go to state 29
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 79
+    numeric_const                  shift and go to state 6
+    inequality                     shift and go to state 59
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 59
+
+    (28) inequality -> EQUALS inequality .
+    (26) inequality -> inequality . OR EQUALS
+    (27) inequality -> inequality . OR EQUALS TO
+
+    A               reduce using rule 28 (inequality -> EQUALS inequality .)
+    THE             reduce using rule 28 (inequality -> EQUALS inequality .)
+    NUMERIC_CONSTANT reduce using rule 28 (inequality -> EQUALS inequality .)
+    UNWORD          reduce using rule 28 (inequality -> EQUALS inequality .)
+    OR              shift and go to state 68
+
+  ! OR              [ reduce using rule 28 (inequality -> EQUALS inequality .) ]
+
+
+state 60
+
+    (35) numeric_expression -> numeric_expression MINUS numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    DIVIDES         reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    NOT             reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    DOES            reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    EQUALS          reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    PLUS            reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    MINUS           reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    MOD             reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    CMP_LT          reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    CMP_GT          reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    THAN            reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    EVENLY          reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    SENTENCE_END    reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    IF              reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    IMPLIES         reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    AND             reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    OR              reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    THEN            reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    A               reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    THE             reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    UNWORD          reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+
+  ! TIMES           [ reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .) ]
+  ! DIVIDE          [ reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .) ]
+  ! POWER           [ reduce using rule 35 (numeric_expression -> numeric_expression MINUS numeric_expression .) ]
+  ! PLUS            [ shift and go to state 33 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! MOD             [ shift and go to state 34 ]
+
+
+state 61
+
+    (17) proposition -> numeric_expression NOT DIVIDE . numeric_expression
+    (18) proposition -> numeric_expression NOT DIVIDE . numeric_expression EVENLY
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 81
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 62
+
+    (19) proposition -> numeric_expression DOES NOT . DIVIDE numeric_expression
+    (20) proposition -> numeric_expression DOES NOT . DIVIDE numeric_expression EVENLY
+
+    DIVIDE          shift and go to state 82
+
+
+state 63
+
+    (34) numeric_expression -> numeric_expression PLUS numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    DIVIDES         reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    NOT             reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    DOES            reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    EQUALS          reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    PLUS            reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    MINUS           reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    MOD             reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    CMP_LT          reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    CMP_GT          reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    THAN            reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    EVENLY          reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    SENTENCE_END    reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    IF              reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    IMPLIES         reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    AND             reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    OR              reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    THEN            reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    A               reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    THE             reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    UNWORD          reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+
+  ! TIMES           [ reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .) ]
+  ! DIVIDE          [ reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .) ]
+  ! POWER           [ reduce using rule 34 (numeric_expression -> numeric_expression PLUS numeric_expression .) ]
+  ! PLUS            [ shift and go to state 33 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! MOD             [ shift and go to state 34 ]
+
+
+state 64
+
+    (41) numeric_expression -> numeric_expression MOD numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for POWER resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    DIVIDES         reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    NOT             reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    DOES            reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    EQUALS          reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    CMP_LT          reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    CMP_GT          reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    THAN            reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    EVENLY          reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    SENTENCE_END    reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    IF              reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    IMPLIES         reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    AND             reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    OR              reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    THEN            reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    A               reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    THE             reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    UNWORD          reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .)
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+  ! PLUS            [ reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .) ]
+  ! MINUS           [ reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .) ]
+  ! TIMES           [ reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .) ]
+  ! DIVIDE          [ reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .) ]
+  ! POWER           [ reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .) ]
+  ! MOD             [ reduce using rule 41 (numeric_expression -> numeric_expression MOD numeric_expression .) ]
+
+
+state 65
+
+    (36) numeric_expression -> numeric_expression TIMES numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    DIVIDES         reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    NOT             reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    DOES            reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    EQUALS          reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    PLUS            reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    MINUS           reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    TIMES           reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    DIVIDE          reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    MOD             reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    CMP_LT          reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    CMP_GT          reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    THAN            reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    EVENLY          reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    SENTENCE_END    reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    IF              reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    IMPLIES         reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    AND             reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    OR              reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    THEN            reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    A               reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    THE             reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    UNWORD          reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .)
+    POWER           shift and go to state 27
+
+  ! POWER           [ reduce using rule 36 (numeric_expression -> numeric_expression TIMES numeric_expression .) ]
+  ! PLUS            [ shift and go to state 33 ]
+  ! MINUS           [ shift and go to state 30 ]
+  ! TIMES           [ shift and go to state 35 ]
+  ! DIVIDE          [ shift and go to state 26 ]
+  ! MOD             [ shift and go to state 34 ]
+
+
+state 66
+
+    (37) numeric_expression -> numeric_expression TIMES BY . numeric_expression
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 83
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 67
+
+    (24) proposition -> numeric_expression inequality numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    AND             reduce using rule 24 (proposition -> numeric_expression inequality numeric_expression .)
+    OR              reduce using rule 24 (proposition -> numeric_expression inequality numeric_expression .)
+    SENTENCE_END    reduce using rule 24 (proposition -> numeric_expression inequality numeric_expression .)
+    IF              reduce using rule 24 (proposition -> numeric_expression inequality numeric_expression .)
+    IMPLIES         reduce using rule 24 (proposition -> numeric_expression inequality numeric_expression .)
+    THEN            reduce using rule 24 (proposition -> numeric_expression inequality numeric_expression .)
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 68
+
+    (26) inequality -> inequality OR . EQUALS
+    (27) inequality -> inequality OR . EQUALS TO
+
+    EQUALS          shift and go to state 84
+
+
+state 69
+
+    (15) proposition -> numeric_expression DIVIDES numeric_expression .
+    (16) proposition -> numeric_expression DIVIDES numeric_expression . EVENLY
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    AND             reduce using rule 15 (proposition -> numeric_expression DIVIDES numeric_expression .)
+    OR              reduce using rule 15 (proposition -> numeric_expression DIVIDES numeric_expression .)
+    SENTENCE_END    reduce using rule 15 (proposition -> numeric_expression DIVIDES numeric_expression .)
+    IF              reduce using rule 15 (proposition -> numeric_expression DIVIDES numeric_expression .)
+    IMPLIES         reduce using rule 15 (proposition -> numeric_expression DIVIDES numeric_expression .)
+    THEN            reduce using rule 15 (proposition -> numeric_expression DIVIDES numeric_expression .)
+    EVENLY          shift and go to state 85
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 70
+
+    (5) sentence -> DOES proposition SENTENCE_END .
+
+    EQUALS          reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    DOES            reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    IF              reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    NOT             reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    TRUE            reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    FALSE           reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    A               reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    THE             reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    UNWORD          reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+    $end            reduce using rule 5 (sentence -> DOES proposition SENTENCE_END .)
+
+
+state 71
+
+    (8) sentence -> DOES identifier SENTENCE_END .
+
+    EQUALS          reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    DOES            reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    IF              reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    NOT             reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    TRUE            reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    FALSE           reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    A               reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    THE             reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    UNWORD          reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+    $end            reduce using rule 8 (sentence -> DOES identifier SENTENCE_END .)
+
+
+state 72
+
+    (4) sentence -> EQUALS proposition SENTENCE_END .
+
+    EQUALS          reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    DOES            reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    IF              reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    NOT             reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    TRUE            reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    FALSE           reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    A               reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    THE             reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    UNWORD          reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+    $end            reduce using rule 4 (sentence -> EQUALS proposition SENTENCE_END .)
+
+
+state 73
+
+    (6) sentence -> EQUALS numeric_expression numeric_expression . SENTENCE_END
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    SENTENCE_END    shift and go to state 86
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 74
+
+    (7) sentence -> EQUALS identifier SENTENCE_END .
+
+    EQUALS          reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    DOES            reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    IF              reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    NOT             reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    TRUE            reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    FALSE           reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    A               reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    THE             reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    UNWORD          reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+    $end            reduce using rule 7 (sentence -> EQUALS identifier SENTENCE_END .)
+
+
+state 75
+
+    (11) sentence -> IF proposition THEN . proposition SENTENCE_END
+    (12) proposition -> . proposition AND proposition
+    (13) proposition -> . NOT proposition
+    (14) proposition -> . proposition OR proposition
+    (15) proposition -> . numeric_expression DIVIDES numeric_expression
+    (16) proposition -> . numeric_expression DIVIDES numeric_expression EVENLY
+    (17) proposition -> . numeric_expression NOT DIVIDE numeric_expression
+    (18) proposition -> . numeric_expression NOT DIVIDE numeric_expression EVENLY
+    (19) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression
+    (20) proposition -> . numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
+    (21) proposition -> . numeric_expression EQUALS EQUALS numeric_expression
+    (22) proposition -> . numeric_expression EQUALS numeric_expression
+    (23) proposition -> . TRUE
+    (24) proposition -> . numeric_expression inequality numeric_expression
+    (25) proposition -> . FALSE
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    NOT             shift and go to state 16
+    TRUE            shift and go to state 4
+    FALSE           shift and go to state 14
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    identifier_content             shift and go to state 15
+    numeric_const                  shift and go to state 6
+    proposition                    shift and go to state 87
+    numeric_expression             shift and go to state 3
+    identifier                     shift and go to state 17
+
+state 76
+
+    (10) sentence -> proposition IMPLIES proposition SENTENCE_END .
+
+    EQUALS          reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    DOES            reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    IF              reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    NOT             reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    TRUE            reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    FALSE           reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    A               reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    THE             reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    UNWORD          reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+    $end            reduce using rule 10 (sentence -> proposition IMPLIES proposition SENTENCE_END .)
+
+
+state 77
+
+    (9) sentence -> proposition IF proposition SENTENCE_END .
+
+    EQUALS          reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    DOES            reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    IF              reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    NOT             reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    TRUE            reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    FALSE           reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    A               reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    THE             reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    UNWORD          reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+    $end            reduce using rule 9 (sentence -> proposition IF proposition SENTENCE_END .)
+
+
+state 78
+
+    (39) numeric_expression -> numeric_expression DIVIDE BY numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for POWER resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    DIVIDES         reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    NOT             reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    DOES            reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    EQUALS          reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    CMP_LT          reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    CMP_GT          reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    THAN            reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    EVENLY          reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    SENTENCE_END    reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    IF              reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    IMPLIES         reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    AND             reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    OR              reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    THEN            reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    A               reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    THE             reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    UNWORD          reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .)
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+  ! PLUS            [ reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .) ]
+  ! MINUS           [ reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .) ]
+  ! TIMES           [ reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .) ]
+  ! DIVIDE          [ reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .) ]
+  ! POWER           [ reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .) ]
+  ! MOD             [ reduce using rule 39 (numeric_expression -> numeric_expression DIVIDE BY numeric_expression .) ]
+
+
+state 79
+
+    (21) proposition -> numeric_expression EQUALS EQUALS numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    AND             reduce using rule 21 (proposition -> numeric_expression EQUALS EQUALS numeric_expression .)
+    OR              reduce using rule 21 (proposition -> numeric_expression EQUALS EQUALS numeric_expression .)
+    SENTENCE_END    reduce using rule 21 (proposition -> numeric_expression EQUALS EQUALS numeric_expression .)
+    IF              reduce using rule 21 (proposition -> numeric_expression EQUALS EQUALS numeric_expression .)
+    IMPLIES         reduce using rule 21 (proposition -> numeric_expression EQUALS EQUALS numeric_expression .)
+    THEN            reduce using rule 21 (proposition -> numeric_expression EQUALS EQUALS numeric_expression .)
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 80
+
+    (28) inequality -> EQUALS . inequality
+    (26) inequality -> . inequality OR EQUALS
+    (27) inequality -> . inequality OR EQUALS TO
+    (28) inequality -> . EQUALS inequality
+    (29) inequality -> . CMP_LT
+    (30) inequality -> . CMP_GT
+    (31) inequality -> . THAN
+    (32) inequality -> . CMP_LT THAN
+    (33) inequality -> . CMP_GT THAN
+
+    EQUALS          shift and go to state 80
+    CMP_LT          shift and go to state 25
+    CMP_GT          shift and go to state 24
+    THAN            shift and go to state 29
+
+    inequality                     shift and go to state 59
+
+state 81
+
+    (17) proposition -> numeric_expression NOT DIVIDE numeric_expression .
+    (18) proposition -> numeric_expression NOT DIVIDE numeric_expression . EVENLY
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    AND             reduce using rule 17 (proposition -> numeric_expression NOT DIVIDE numeric_expression .)
+    OR              reduce using rule 17 (proposition -> numeric_expression NOT DIVIDE numeric_expression .)
+    SENTENCE_END    reduce using rule 17 (proposition -> numeric_expression NOT DIVIDE numeric_expression .)
+    IF              reduce using rule 17 (proposition -> numeric_expression NOT DIVIDE numeric_expression .)
+    IMPLIES         reduce using rule 17 (proposition -> numeric_expression NOT DIVIDE numeric_expression .)
+    THEN            reduce using rule 17 (proposition -> numeric_expression NOT DIVIDE numeric_expression .)
+    EVENLY          shift and go to state 88
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 82
+
+    (19) proposition -> numeric_expression DOES NOT DIVIDE . numeric_expression
+    (20) proposition -> numeric_expression DOES NOT DIVIDE . numeric_expression EVENLY
+    (34) numeric_expression -> . numeric_expression PLUS numeric_expression
+    (35) numeric_expression -> . numeric_expression MINUS numeric_expression
+    (36) numeric_expression -> . numeric_expression TIMES numeric_expression
+    (37) numeric_expression -> . numeric_expression TIMES BY numeric_expression
+    (38) numeric_expression -> . numeric_expression DIVIDE numeric_expression
+    (39) numeric_expression -> . numeric_expression DIVIDE BY numeric_expression
+    (40) numeric_expression -> . numeric_expression POWER numeric_expression
+    (41) numeric_expression -> . numeric_expression MOD numeric_expression
+    (42) numeric_expression -> . identifier
+    (43) numeric_expression -> . numeric_const
+    (45) identifier -> . identifier_content
+    (46) identifier -> . A identifier_content
+    (47) identifier -> . THE identifier_content
+    (44) numeric_const -> . NUMERIC_CONSTANT
+    (48) identifier_content -> . UNWORD
+    (49) identifier_content -> . UNWORD identifier_content
+
+    A               shift and go to state 7
+    THE             shift and go to state 12
+    NUMERIC_CONSTANT shift and go to state 10
+    UNWORD          shift and go to state 11
+
+    numeric_expression             shift and go to state 89
+    numeric_const                  shift and go to state 6
+    identifier                     shift and go to state 17
+    identifier_content             shift and go to state 15
+
+state 83
+
+    (37) numeric_expression -> numeric_expression TIMES BY numeric_expression .
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for POWER resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    DIVIDES         reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    NOT             reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    DOES            reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    EQUALS          reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    CMP_LT          reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    CMP_GT          reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    THAN            reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    EVENLY          reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    SENTENCE_END    reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    IF              reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    IMPLIES         reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    AND             reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    OR              reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    THEN            reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    A               reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    THE             reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    NUMERIC_CONSTANT reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    UNWORD          reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .)
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+  ! PLUS            [ reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .) ]
+  ! MINUS           [ reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .) ]
+  ! TIMES           [ reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .) ]
+  ! DIVIDE          [ reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .) ]
+  ! POWER           [ reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .) ]
+  ! MOD             [ reduce using rule 37 (numeric_expression -> numeric_expression TIMES BY numeric_expression .) ]
+
+
+state 84
+
+    (26) inequality -> inequality OR EQUALS .
+    (27) inequality -> inequality OR EQUALS . TO
+
+    OR              reduce using rule 26 (inequality -> inequality OR EQUALS .)
+    A               reduce using rule 26 (inequality -> inequality OR EQUALS .)
+    THE             reduce using rule 26 (inequality -> inequality OR EQUALS .)
+    NUMERIC_CONSTANT reduce using rule 26 (inequality -> inequality OR EQUALS .)
+    UNWORD          reduce using rule 26 (inequality -> inequality OR EQUALS .)
+    TO              shift and go to state 90
+
+
+state 85
+
+    (16) proposition -> numeric_expression DIVIDES numeric_expression EVENLY .
+
+    AND             reduce using rule 16 (proposition -> numeric_expression DIVIDES numeric_expression EVENLY .)
+    OR              reduce using rule 16 (proposition -> numeric_expression DIVIDES numeric_expression EVENLY .)
+    SENTENCE_END    reduce using rule 16 (proposition -> numeric_expression DIVIDES numeric_expression EVENLY .)
+    IF              reduce using rule 16 (proposition -> numeric_expression DIVIDES numeric_expression EVENLY .)
+    IMPLIES         reduce using rule 16 (proposition -> numeric_expression DIVIDES numeric_expression EVENLY .)
+    THEN            reduce using rule 16 (proposition -> numeric_expression DIVIDES numeric_expression EVENLY .)
+
+
+state 86
+
+    (6) sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .
+
+    EQUALS          reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    DOES            reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    IF              reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    NOT             reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    TRUE            reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    FALSE           reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    A               reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    THE             reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    UNWORD          reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+    $end            reduce using rule 6 (sentence -> EQUALS numeric_expression numeric_expression SENTENCE_END .)
+
+
+state 87
+
+    (11) sentence -> IF proposition THEN proposition . SENTENCE_END
+    (12) proposition -> proposition . AND proposition
+    (14) proposition -> proposition . OR proposition
+
+    SENTENCE_END    shift and go to state 91
+    AND             shift and go to state 19
+    OR              shift and go to state 22
+
+
+state 88
+
+    (18) proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .
+
+    AND             reduce using rule 18 (proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .)
+    OR              reduce using rule 18 (proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .)
+    SENTENCE_END    reduce using rule 18 (proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .)
+    IF              reduce using rule 18 (proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .)
+    IMPLIES         reduce using rule 18 (proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .)
+    THEN            reduce using rule 18 (proposition -> numeric_expression NOT DIVIDE numeric_expression EVENLY .)
+
+
+state 89
+
+    (19) proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .
+    (20) proposition -> numeric_expression DOES NOT DIVIDE numeric_expression . EVENLY
+    (34) numeric_expression -> numeric_expression . PLUS numeric_expression
+    (35) numeric_expression -> numeric_expression . MINUS numeric_expression
+    (36) numeric_expression -> numeric_expression . TIMES numeric_expression
+    (37) numeric_expression -> numeric_expression . TIMES BY numeric_expression
+    (38) numeric_expression -> numeric_expression . DIVIDE numeric_expression
+    (39) numeric_expression -> numeric_expression . DIVIDE BY numeric_expression
+    (40) numeric_expression -> numeric_expression . POWER numeric_expression
+    (41) numeric_expression -> numeric_expression . MOD numeric_expression
+
+    AND             reduce using rule 19 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .)
+    OR              reduce using rule 19 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .)
+    SENTENCE_END    reduce using rule 19 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .)
+    IF              reduce using rule 19 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .)
+    IMPLIES         reduce using rule 19 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .)
+    THEN            reduce using rule 19 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression .)
+    EVENLY          shift and go to state 92
+    PLUS            shift and go to state 33
+    MINUS           shift and go to state 30
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 26
+    POWER           shift and go to state 27
+    MOD             shift and go to state 34
+
+
+state 90
+
+    (27) inequality -> inequality OR EQUALS TO .
+
+    OR              reduce using rule 27 (inequality -> inequality OR EQUALS TO .)
+    A               reduce using rule 27 (inequality -> inequality OR EQUALS TO .)
+    THE             reduce using rule 27 (inequality -> inequality OR EQUALS TO .)
+    NUMERIC_CONSTANT reduce using rule 27 (inequality -> inequality OR EQUALS TO .)
+    UNWORD          reduce using rule 27 (inequality -> inequality OR EQUALS TO .)
+
+
+state 91
+
+    (11) sentence -> IF proposition THEN proposition SENTENCE_END .
+
+    EQUALS          reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    DOES            reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    IF              reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    NOT             reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    TRUE            reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    FALSE           reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    A               reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    THE             reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    NUMERIC_CONSTANT reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    UNWORD          reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+    $end            reduce using rule 11 (sentence -> IF proposition THEN proposition SENTENCE_END .)
+
+
+state 92
+
+    (20) proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .
+
+    AND             reduce using rule 20 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .)
+    OR              reduce using rule 20 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .)
+    SENTENCE_END    reduce using rule 20 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .)
+    IF              reduce using rule 20 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .)
+    IMPLIES         reduce using rule 20 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .)
+    THEN            reduce using rule 20 (proposition -> numeric_expression DOES NOT DIVIDE numeric_expression EVENLY .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for UNWORD in state 11 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 64 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 64 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 64 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 64 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 78 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 78 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 78 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 78 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 78 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 78 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 83 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 83 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 83 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 83 resolved as shift
+WARNING: shift/reduce conflict for POWER in state 83 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 83 resolved as shift
