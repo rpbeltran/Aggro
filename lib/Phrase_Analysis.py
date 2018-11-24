@@ -3,6 +3,7 @@ from algorithms.Similarity_Engine import NB_Sim_Engine
 
 
 
+
 def associate_phrases ( phrases, threshold = 0.4 ):
 
 	# Compute a similrity grid
@@ -48,20 +49,6 @@ def associate_phrases ( phrases, threshold = 0.4 ):
 		replacement_head += 1
 
 	return alias_table
-
-
-
-	
-
-if __name__ == '__main__':
-	
-	tests = [
-		( [ "year y".split(), "leap year".split(), "y".split() ] , [ 0, 1, 0] ),
-		( [ "number n".split(), "prime".split(), "n".split(), "m".split(), "m".split(), "n".split(), "prime".split() ] , [ 0, 1, 0, 2, 2, 0, 1] ),
-	]
-
-	print associate_phrases( tests[0][0] ) == tests[0][1]
-	print associate_phrases( tests[1][0] ) == tests[1][1]
 
 
 

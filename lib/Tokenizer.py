@@ -3,7 +3,7 @@ import sys
 import ply.lex as lex
 import regex
 
-from preprocessing import Preprocessor
+from Preprocessing import Preprocessor
 
 preprocessor = Preprocessor()
 
@@ -46,7 +46,7 @@ class Aggro_Tokenizer:
         'POWER'   : gen_token( [ 'power', 'raised'   ], True ),
         'MOD'     : gen_token( [ 'mod', 'modulus', 'remainder' ], True ),
 
-        'EQUALS' : gen_token(['is','equals','be'], True ),
+        'EQUALS' : gen_token(['is','are','equals','be'], True ),
         
         'CMP_LT' : gen_token(['less'],    True ),
         'CMP_GT' : gen_token(['greater'], True ),

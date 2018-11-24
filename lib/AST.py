@@ -4,17 +4,8 @@ import ply.yacc as yacc
 import sys
 
 
-
 tokenizer = Aggro_Tokenizer()
 tokens    = Aggro_Tokenizer.tokens
-
-
-# --- NLP Challenges ---
-
-# - Identify what is really being anded, ored, and negated
-# - Identify chances two identifiers are refering to the same thing
-# - Support the "it" identifier
-# - Inserting implicit "be"s as in "water makes the ground wet" => "water makes the ground be wet"
 
 
 # ------------------------
@@ -33,27 +24,124 @@ class Node:
 
         self.tags = tags
 
+        self.alias = ""
+
+        self.bound = False
+
+        self.phrases = []
+        self.givens  = []
+        self.rules   = []
+
+        self.label_free()
+
+
+    def label_free ( self, in_given = False, in_rule = False ):
+
+        if self.label == "__given__":
+
+            in_given = True
+
+        elif self.label == "__rule__":
+
+            in_rule = True
+
+        elif self.label == "__is__":
+
+            if in_given or in_rule:
+
+                if self.children[0].label == "__numeric const__" or self.children[0].bound:
+
+                    if self.children[1].label == "__phrase__":
+
+                        self.children[1].bound = True
+
+                if self.children[1].label == "__numeric const__" or self.children[1].bound:
+
+                    if self.children[0].label == "__phrase__":
+
+                        self.children[0].bound = True
+
+        for child in self.children:
+
+            child.label_free( in_given=in_given, in_rule=in_rule )
+
+
+    def bind_associated_phrases( self ):
+
+        for p in self.phrases:
+
+            for q in self.phrases:
+
+                if ( p.alias == q.alias ) and q.bound:
+
+                    p.bound = True
+
+
+    def place_flags( self ):
+
+        for child in self.children:
+
+            child.place_flags()
+
+        if self.label == "__phrase__":
+
+            self.phrases = [ self ]
+
+        elif not self.leaf:
+
+            self.phrases = [ phrase for child in self.children for phrase in child.phrases ]
+        
+        if self.label == "__given__":
+
+            self.givens = [ self ]
+
+        elif not self.leaf:
+
+            self.givens = [ phrase for child in self.children for phrase in child.givens ]
+
+        if self.label == "__rule__":
+
+            self.rules = [ self ]
+
+        elif not self.leaf:
+
+            self.rules = [ phrase for child in self.children for phrase in child.rules ]
+
+
+
+
+
 
     def to_str ( self, indentation = 0 ):
 
-        ind = '|  ' * indentation
+        string = '|  ' * indentation
 
-        string = ind + ( "Leaf: " if self.leaf else "Node: ") + str( self.label )
+        if self.label == "__phrase__":
+            
+            string += "Phrase: {{ alias:{alias}, bound:{bound} }}".format( alias=self.alias, bound=self.bound )
+
+        elif self.leaf:
+
+            string += "Leaf: {label}".format( label = self.label )
+
+        else:
+
+            string += "Node: {label}".format( label = self.label )
 
         for c in self.children:
-
             string += "\n" + c.to_str( indentation + 1 )
 
         return string
-
 
     def __str__ ( self ):
 
         return self.to_str()
 
-    def insert_POS( self, tags ):
+   
 
-        pass
+            
+
+
 
 
 # -----------------------
@@ -116,30 +204,51 @@ def p_query( p ):
 
     else:
 
-      p[0] = Node( "__query__", [ Node( "__is__", [ p[2], p[3] ] ) ] )
+        p[0] = Node( "__query__", [ 
+            Node( "__is__", [ p[2], p[3] ] )
+        ] )
 
 def p_query2( p ):
     '''sentence : EQUALS identifier SENTENCE_END
                 | DOES   identifier SENTENCE_END
     '''
 
-    p[0] = Node( "__query__", [ Node( "__is__", [ Node( "@split", [ p[2] ] ) ] ) ] )
+    p[0] = Node( "__query__", [ 
+        Node( "__is__", [ 
+            Node( "@split", [ p[2] ] ) 
+        ] ) 
+    ] )
 
 
 def p_forward_utilization( p ):
     '''sentence : proposition IF proposition SENTENCE_END'''
 
-    p[0] = Node( "__rule__", [ Node( "__if then__", [ Node("__if__", [ p[3] ] ), Node("__then__", [ p[1] ] ) ] ) ] )
+    p[0] = Node( "__rule__", [ 
+        Node( "__if then__", [ 
+            Node("__if__",   [ p[3] ] ), 
+            Node("__then__", [ p[1] ] ) 
+        ] ) 
+    ] )
 
 def p_back_utilization( p ):
     '''sentence : proposition IMPLIES proposition SENTENCE_END'''
 
-    p[0] = Node( "__rule__", [ Node( "__if then__", [ Node("__if__", [ p[1] ] ), Node("__then__", [ p[3] ] ) ] ) ] )
+    p[0] = Node( "__rule__", [ 
+        Node( "__if then__", [ 
+            Node("__if__",   [ p[1] ] ), 
+            Node("__then__", [ p[3] ] ) 
+        ] ) 
+    ] )
 
 def p_back_utilization2( p ):
     '''sentence : IF proposition THEN proposition SENTENCE_END'''
 
-    p[0] = Node( "__rule__", [ Node( "__if then__", [ Node("__if__", [ p[2] ] ), Node("__then__", [ p[4] ] ) ] ) ] )
+    p[0] = Node( "__rule__", [ 
+        Node( "__if then__", [
+            Node("__if__",   [ p[2] ] ), 
+            Node("__then__", [ p[4] ] ) 
+        ] ) 
+    ] )
 
 
 
@@ -169,22 +278,34 @@ def p_evenly( p ):
                    | numeric_expression DIVIDES numeric_expression EVENLY
     '''
 
-    p[0] = Node( "__is__", [ Node( "__modulo__", [ p[1], p[3] ] ), Node( 0 ) ] )
+    p[0] = Node( "__is__", [ 
+        Node( "__modulo__", [ p[1], p[3] ] ),
+        Node( 0 ) 
+    ] )
 
 def p_not_evenly( p ):
     ''' proposition : numeric_expression NOT DIVIDE numeric_expression
                     | numeric_expression NOT DIVIDE numeric_expression EVENLY
     '''
 
-    p[0] = Node( "__not__", [ Node( "__is__", [ Node( "__modulo__", [ p[1], p[4] ] ), Node( 0 ) ] ) ] )
+    p[0] = Node( "__not__", [ 
+        Node( "__is__", [ 
+            Node( "__modulo__", [ p[1], p[4] ] ), 
+            Node( 0 ) 
+        ] ) 
+    ] )
 
 def p_not_evenly2( p ):
     ''' proposition : numeric_expression DOES NOT DIVIDE numeric_expression
                     | numeric_expression DOES NOT DIVIDE numeric_expression EVENLY
     '''
 
-    p[0] = Node( "__not__", [ Node( "__is__", [ Node( "__modulo__", [ p[1], p[5] ] ), Node( 0 ) ] ) ] )
-
+    p[0] = Node( "__not__", [ 
+        Node( "__is__", [ 
+            Node( "__modulo__", [ p[1], p[5] ] ), 
+            Node( 0 ) 
+        ] ) 
+    ] )
 
 def p_proposition( p ):
     '''proposition : numeric_expression EQUALS EQUALS numeric_expression
@@ -345,10 +466,9 @@ def parse( sentence ):
 
 def main( ):
 
-    from preprocessing import Preprocessor
+    from Preprocessing import Preprocessor
 
-    #program = "A year y is a leap year if 4 divides y evenly and y does not divide 100 or y divides 400. The year is 2018. Is y a leap year?"
-    program  = "A year y is a leap year if 4 divides y evenly. The year is 2018. Is y a leap year?"
+    program = "A year y is a leap year if 4 divides y evenly. Is 2018 a leap year?"
 
     p = Preprocessor()
 
@@ -357,8 +477,6 @@ def main( ):
     tokens = tokenizer.tokenize_sentence( ss )
 
     tree = yacc.parse( ss )
-
-    tree.insert_POS( ps )
 
     print ""
     print program

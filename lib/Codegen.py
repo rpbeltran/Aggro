@@ -27,7 +27,10 @@ class Code_Generator:
 
 		self.queries = []
 
-	def gen_code( root = self.ast ):
+
+	def gen_code( self ):
+
+		root = self.ast
 
 		code_obj = Code_Object( root.label )
 
@@ -123,7 +126,7 @@ class Code_Generator:
 			)
 
 		
-		# boolean logic
+		# Boolean logic
 
 		elif root.label == "__not__":
 
@@ -209,7 +212,8 @@ class Code_Generator:
 			)
 
 
-		# givens, and rules
+		# Givens, and rules
+
 		elif (root.label == "__given__") or (root.label == "__rule__"):
 
 			code_obj.code = "{id}() :- {aid}().  /*{label}*/".format(
@@ -217,8 +221,6 @@ class Code_Generator:
 				id  = code_obj.identity,
 				aid = code_child[0].identity
 			)
-
-		
 
 
 
