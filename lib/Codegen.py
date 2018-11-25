@@ -13,6 +13,8 @@ class Code_Object:
 
 		self.prolog_override = ""
 
+		self.major_rules = []
+
 		self.rules   = []
 		self.queries = []
 		
@@ -38,18 +40,27 @@ class Code_Object:
 
 class Code_Generator:
 
-	def __init__ ( self ):
 
-		self.rules = []
+	def gen_code( self, root ):
 
-		self.queries = []
+		code = self.gen_code_helper( root )
 
-	def gen_code( self, root = None ):
+		rules = ', '.join( map( lambda rule: '{name}( {args} )'.format(name=rule.name,args=', '.join(rule.arglist)) , code.major_rules ) )
 
-		if root == None:
+		if code.major_rules:
 
-			root = self.ast
+			rules += ', '
 
+		for q in code.queries:
+
+			q.code = rules + q.code
+
+		code.queries = map( lambda q : q.prolog(), code.queries)
+
+		return code
+
+
+	def gen_code_helper( self, root ):
 
 		code_obj = Code_Object( root )
 
@@ -60,9 +71,11 @@ class Code_Generator:
 
 		for child in root.children:
 
-			child_obj = self.gen_code( child )
+			child_obj = self.gen_code_helper( child )
 
 			child_codes.append( child_obj )
+
+			code_obj.major_rules += child_obj.major_rules
 
 			code_obj.rules   += child_obj.rules
 			code_obj.queries += child_obj.queries
@@ -89,7 +102,7 @@ class Code_Generator:
 
 		elif root.label == "__phrase__":
 
-			code_obj.name = root.alias.lower()
+			code_obj.name = root.alias
 
 			return code_obj
 
@@ -97,54 +110,13 @@ class Code_Generator:
 
 		elif root.label == "__is__":
 
-			if child_codes[0].root.label == "__phrase__" and child_codes[1].root.label == "__phrase__":
-
-				code_obj.name    = child_codes[0].name
-				code_obj.arglist = [ 'Candidate' ]
-				code_obj.code = "{right}( Candidate )".format(
-					right = child_codes[1].name
-				)
-
-				code_obj_rev = Code_Object()
-
-				code_obj_rev.name       = child_codes[1].name
-				code_obj_rev.arglist    = [ 'Candidate' ]
-				code_obj_rev.code = "{right}( Candidate )".format(
-					right = child_codes[0].name
-				)
-
-				code_obj_rev.rules.append( code_obj.prolog() )
-				code_obj_rev.rules.append( code_obj_rev.prolog() )
-
-				return code_obj
-
-			else:
-
-				if child_codes[0].root.label == "__phrase__":
-
-					child_codes[0].arglist = [ 'Candidate' ]
-					child_codes[0].code    = "{val}(Candidate)".format(
-						val = child_codes[1].name
-					)
-
-					code_obj.rules.append( child_codes[0].prolog() )
-
-				elif child_codes[1].root.label == "__phrase__":
-
-					child_codes[1].arglist = [ 'Candidate' ]
-					child_codes[1].code    = "{val}(Candidate)".format(
-						val = child_codes[1].name
-					)
-
-					code_obj.rules.append( child_codes[1].prolog() )
-
-				code_obj.name    = "is_{id}".format(id=root.id)
-				code_obj.arglist = root.unique_phrases
-				code_obj.code    = "{bid}( {aid} )".format(
-					aid = child_codes[0].name,
-					bid = child_codes[1].name
-				)
-				code_obj.comment = root.id
+			code_obj.name    = "is_{id}".format(id=root.id)
+			code_obj.arglist = root.unique_phrases
+			code_obj.code    = "{bid}( {aid} )".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
 
 		# If ___ then ___
 
@@ -175,7 +147,7 @@ class Code_Generator:
 			code_obj.set_prolog( '{then_code} :- {if_code}. /* {comment} */'.format(
 				if_code   = if_obj.code,
 				then_code = then_obj.code,
-				comment = root.id
+				comment   = root.id
 			) )
 
 
@@ -184,9 +156,13 @@ class Code_Generator:
 
 		elif root.label == "__given__":
 
+			code_obj.major_rules.append( child_codes[0] )
+
 			return code_obj
 
 		elif root.label == "__rule__":
+
+			code_obj.major_rules.append( child_codes[0] )
 
 			return code_obj
 
@@ -198,9 +174,13 @@ class Code_Generator:
 			code_obj.arglist = root.unique_phrases
 			code_obj.code    = "{child}( {args} )".format(
 				child = child_codes[0].name,
-				args  = ', '.join( child_codes[0].arglist )
+				args  = ', '.join( child_codes[0].arglist ),
 			)
 			code_obj.comment = root.id
+
+			code_obj.queries.append( code_obj )
+
+			return code_obj
 
 
 

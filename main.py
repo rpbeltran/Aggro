@@ -38,7 +38,7 @@ def process ( sentence ):
 
 	phrases = ast.phrases
 
-	phrases_iters = map( lambda node : [ str(child) for child in node.children ], phrases )
+	phrases_iters = map( lambda node : [ child.label for child in node.children ], phrases )
 
 	alias_table = associate_phrases( phrases_iters )
 
@@ -48,6 +48,7 @@ def process ( sentence ):
 
 	ast.bind_associated_phrases()
 	ast.label_unique_phrases()
+
 
 	
 	# Generate Code
@@ -68,9 +69,14 @@ def process ( sentence ):
 	print ""
 	for rule in code.rules:
 		print rule
+	print ""
+	for query in code.queries:
+		print query
 
 
 
 
-process( "x is y." )
+
+process( "x is 4. Is x 4?" )
+
 #process ( "y is a leapyear if 4 divides y evenly. The year is 2018. Is the year a leapyear?" )
