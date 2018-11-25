@@ -44,25 +44,20 @@ def process ( sentence ):
 
 	for i in range(len(phrases)):
 
-		phrases[i].alias = "phrase_{alias}".format( alias = alias_table[i] )
+		phrases[i].alias = "Phrase_{alias}".format( alias = alias_table[i] )
 
 	ast.bind_associated_phrases()
+	ast.label_unique_phrases()
 
 	
 	# Generate Code
 
-	codegen = Code_Generator( ast )
+	codegen = Code_Generator( )
 
-
-
-
+	code = codegen.gen_code( ast )
 
 
 	# Execute Code
-
-
-
-
 
 	print ""
 	print sentence
@@ -71,9 +66,11 @@ def process ( sentence ):
 	print ""
 	print ast
 	print ""
+	for rule in code.rules:
+		print rule
 
 
 
 
-
-process ( "y is a leapyear if 4 divides y evenly. The year is 2018. Is the year a leapyear?" )
+process( "x is y." )
+#process ( "y is a leapyear if 4 divides y evenly. The year is 2018. Is the year a leapyear?" )

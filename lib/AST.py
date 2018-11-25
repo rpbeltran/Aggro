@@ -14,6 +14,8 @@ tokens    = Aggro_Tokenizer.tokens
 
 class Node:
 
+    counter = 0
+
     def __init__ ( self, label, children = [], tags = [] ):
 
         self.label = label
@@ -31,6 +33,9 @@ class Node:
         self.phrases = []
         self.givens  = []
         self.rules   = []
+
+        self.id = Node.counter
+        Node.counter += 1
 
         self.label_free()
 
@@ -77,6 +82,15 @@ class Node:
                     p.bound = True
 
 
+    def label_unique_phrases( self ):
+
+        self.unique_phrases = list(set( map( lambda p : p.alias, self.phrases ) ))
+
+        for child in self.children:
+
+            child.label_unique_phrases()
+
+
     def place_flags( self ):
 
         for child in self.children:
@@ -108,30 +122,27 @@ class Node:
             self.rules = [ phrase for child in self.children for phrase in child.rules ]
 
 
-
-
-
-
     def to_str ( self, indentation = 0 ):
 
         string = '|  ' * indentation
 
         if self.label == "__phrase__":
             
-            string += "Phrase: {{ alias:{alias}, bound:{bound} }}".format( alias=self.alias, bound=self.bound )
+            string += "Phrase: {{ alias:{alias}, bound:{bound} }} [{id}]".format( id = self.id, alias=self.alias, bound=self.bound )
 
         elif self.leaf:
 
-            string += "Leaf: {label}".format( label = self.label )
+            string += "Leaf: {label} [{id}]".format( id = self.id, label = self.label )
 
         else:
 
-            string += "Node: {label}".format( label = self.label )
+            string += "Node: {label} [{id}]".format( id = self.id, label = self.label )
 
         for c in self.children:
             string += "\n" + c.to_str( indentation + 1 )
 
         return string
+
 
     def __str__ ( self ):
 
