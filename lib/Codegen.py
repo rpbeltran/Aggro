@@ -106,6 +106,74 @@ class Code_Generator:
 
 			return code_obj
 
+		# Arithmetic
+
+		elif root.label == "__plus__":
+
+			code_obj.name    = "arithmetic_{id}".format(id=root.id)
+			code_obj.arglist = [ "Candidate" ]
+
+			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 + Arg2)".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
+
+		elif root.label == "__minus__":
+
+			code_obj.name    = "arithmetic_{id}".format(id=root.id)
+			code_obj.arglist = [ "Candidate" ]
+
+			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 - Arg2)".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
+		
+		elif root.label == "__times__":
+
+			code_obj.name    = "arithmetic_{id}".format(id=root.id)
+			code_obj.arglist = [ "Candidate" ]
+
+			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 * Arg2)".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
+
+		elif root.label == "__divide__":
+
+			code_obj.name    = "arithmetic_{id}".format(id=root.id)
+			code_obj.arglist = [ "Candidate" ]
+
+			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 / Arg2)".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
+
+		elif root.label == "__power__":
+
+			code_obj.name    = "arithmetic_{id}".format(id=root.id)
+			code_obj.arglist = [ "Candidate" ]
+
+			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 ^ Arg2)".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
+
+		elif root.label == "__modulo__":
+
+			code_obj.name    = "arithmetic_{id}".format(id=root.id)
+			code_obj.arglist = [ "Candidate" ]
+
+			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 mod Arg2)".format(
+				aid = child_codes[0].name,
+				bid = child_codes[1].name
+			)
+			code_obj.comment = root.id
+
 		# Is
 
 		elif root.label == "__is__":
@@ -150,8 +218,6 @@ class Code_Generator:
 				comment   = root.id
 			) )
 
-
-
 		# Givens, and rules
 
 		elif root.label == "__given__":
@@ -171,7 +237,7 @@ class Code_Generator:
 		elif root.label == "__query__":
 
 			code_obj.name    = "query_{id}".format(id=root.id)
-			code_obj.arglist = root.unique_phrases
+			code_obj.arglist = []
 			code_obj.code    = "{child}( {args} )".format(
 				child = child_codes[0].name,
 				args  = ', '.join( child_codes[0].arglist ),
@@ -182,14 +248,11 @@ class Code_Generator:
 
 			return code_obj
 
-
-
 		# Program
 
 		elif root.label == "__program__":
 
 			return code_obj
-
 
 		# Lines of code
 
