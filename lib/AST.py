@@ -241,6 +241,26 @@ def p_forward_utilization( p ):
         ] ) 
     ] )
 
+def p_forward_utilization2( p ):
+    '''sentence : proposition IF AND ONLY IF proposition SENTENCE_END'''
+
+    p[0] = Node( "__rule__", [ 
+        Node( "__iff then__", [ 
+            Node("__if__",   [ p[6] ] ), 
+            Node("__then__", [ p[1] ] ) 
+        ] ) 
+    ] )
+
+def p_forward_utilization3( p ):
+    '''sentence : proposition ONLY IF proposition SENTENCE_END'''
+
+    p[0] = Node( "__rule__", [ 
+        Node( "__iff then__", [ 
+            Node("__if__",   [ p[4] ] ), 
+            Node("__then__", [ p[1] ] ) 
+        ] ) 
+    ] )
+
 def p_back_utilization( p ):
     '''sentence : proposition IMPLIES proposition SENTENCE_END'''
 
@@ -258,6 +278,26 @@ def p_back_utilization2( p ):
         Node( "__if then__", [
             Node("__if__",   [ p[2] ] ), 
             Node("__then__", [ p[4] ] ) 
+        ] ) 
+    ] )
+
+def p_back_utilization3( p ):
+    '''sentence : IF AND ONLY IF proposition THEN proposition SENTENCE_END'''
+
+    p[0] = Node( "__rule__", [
+        Node( "__iff then__", [
+            Node("__if__",   [ p[5] ] ), 
+            Node("__then__", [ p[7] ] ) 
+        ] ) 
+    ] )
+
+def p_back_utilization4( p ):
+    '''sentence : ONLY IF proposition THEN proposition SENTENCE_END'''
+
+    p[0] = Node( "__rule__", [
+        Node( "__iff then__", [
+            Node("__if__",   [ p[3] ] ), 
+            Node("__then__", [ p[5] ] )
         ] ) 
     ] )
 
@@ -290,8 +330,8 @@ def p_evenly( p ):
     '''
 
     p[0] = Node( "__is__", [ 
-        Node( "__modulo__", [ p[1], p[3] ] ),
-        Node( 0 ) 
+        Node( "__modulo__", [ p[3], p[1] ] ),
+        Node( "__numeric const__", [ Node( 0 ) ] )
     ] )
 
 def p_not_evenly( p ):
@@ -301,8 +341,8 @@ def p_not_evenly( p ):
 
     p[0] = Node( "__not__", [ 
         Node( "__is__", [ 
-            Node( "__modulo__", [ p[1], p[4] ] ), 
-            Node( 0 ) 
+            Node( "__modulo__", [ p[4], p[1] ] ), 
+            Node( "__numeric const__", [ Node( 0 ) ] )
         ] ) 
     ] )
 
@@ -313,8 +353,8 @@ def p_not_evenly2( p ):
 
     p[0] = Node( "__not__", [ 
         Node( "__is__", [ 
-            Node( "__modulo__", [ p[1], p[5] ] ), 
-            Node( 0 ) 
+            Node( "__modulo__", [ p[5], p[1] ] ), 
+            Node( "__numeric const__", [ Node( 0 ) ] )
         ] ) 
     ] )
 

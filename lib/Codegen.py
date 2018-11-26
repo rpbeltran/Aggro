@@ -15,7 +15,10 @@ class Code_Object:
 
 		self.major_rules = []
 
+		self.free_rules  = []
+
 		self.rules   = []
+
 		self.queries = []
 		
 
@@ -45,15 +48,15 @@ class Code_Generator:
 
 		code = self.gen_code_helper( root )
 
-		rules = ', '.join( map( lambda rule: '{name}( {args} )'.format(name=rule.name,args=', '.join(rule.arglist)) , code.major_rules ) )
+		givens = ', '.join( map( lambda rule: '{name}( {args} )'.format(name=rule.name,args=', '.join(rule.arglist)) , code.major_rules ) )
 
 		if code.major_rules:
 
-			rules += ', '
+			givens += ', '
 
-		for q in code.queries:
+		for query in code.queries:
 
-			q.code = rules + q.code
+			query.code = givens + query.code
 
 		code.queries = map( lambda q : q.prolog(), code.queries)
 
@@ -76,6 +79,7 @@ class Code_Generator:
 			child_codes.append( child_obj )
 
 			code_obj.major_rules += child_obj.major_rules
+			code_obj.free_rules += child_obj.free_rules
 
 			code_obj.rules   += child_obj.rules
 			code_obj.queries += child_obj.queries
@@ -92,8 +96,9 @@ class Code_Generator:
 		elif root.label in ( "__numeric const__", "__boolean const__" ):
 
 			code_obj.name    = "const_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
+			code_obj.arglist = [ "Candidate".format( id=root.id ) ]
 			code_obj.code    = "Candidate is {val}".format(
+				id  = root.id,
 				val = child_codes[0].root.label
 			)
 			code_obj.comment = root.id
@@ -108,83 +113,101 @@ class Code_Generator:
 
 		# Arithmetic
 
-		elif root.label == "__plus__":
+		elif root.label in ( "__plus__", "__minus__", "__times__", "__divide__", "__power__", "__modulo__" ):
+
+			op = { "__plus__" : '+', "__minus__" : '-', "__times__" : '*', "__divide__" : '/', "__power__" : '^', "__modulo__" : 'mod' }[root.label]
 
 			code_obj.name    = "arithmetic_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
+			code_obj.arglist = [ "Candidate".format(id=root.id) ]
 
-			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 + Arg2)".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
-			code_obj.comment = root.id
+			if child_codes[0].root.label != "__phrase__" and child_codes[1].root.label != "__phrase__":
 
-		elif root.label == "__minus__":
+				code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 {op} Arg2)".format(
+					id = root.id,
+					op = op,
+					aid = child_codes[0].name,
+					bid = child_codes[1].name
+				)
 
-			code_obj.name    = "arithmetic_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
+			elif child_codes[0].root.label == "__phrase__" and child_codes[1].root.label != "__phrase__":
 
-			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 - Arg2)".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
-			code_obj.comment = root.id
-		
-		elif root.label == "__times__":
+				code_obj.arglist.append( child_codes[0].name )
 
-			code_obj.name    = "arithmetic_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
+				code_obj.code = "{bid}(Arg2), Candidate is ({aid} {op} Arg2)".format(
+					id = root.id,
+					op = op,
+					aid = child_codes[0].name,
+					bid = child_codes[1].name
+				)
 
-			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 * Arg2)".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
-			code_obj.comment = root.id
+			elif child_codes[0].root.label != "__phrase__" and child_codes[1].root.label == "__phrase__":
 
-		elif root.label == "__divide__":
+				code_obj.arglist.append( child_codes[1].name )
 
-			code_obj.name    = "arithmetic_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
+				code_obj.code = "{aid}(Arg1), Candidate is (Arg1 {op} {bid})".format(
+					id = root.id,
+					op = op,
+					aid = child_codes[0].name,
+					bid = child_codes[1].name
+				)
 
-			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 / Arg2)".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
-			code_obj.comment = root.id
+			else:
 
-		elif root.label == "__power__":
+				code_obj.arglist.append( child_codes[0].name )
+				code_obj.arglist.append( child_codes[1].name )
 
-			code_obj.name    = "arithmetic_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
+				code_obj.code = "Candidate is ({aid} {op} {bid})".format(
+					id = root.id,
+					op = op,
+					aid = child_codes[0].name,
+					bid = child_codes[1].name
+				)
 
-			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 ^ Arg2)".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
-			code_obj.comment = root.id
-
-		elif root.label == "__modulo__":
-
-			code_obj.name    = "arithmetic_{id}".format(id=root.id)
-			code_obj.arglist = [ "Candidate" ]
-
-			code_obj.code = "{aid}(Arg1), {bid}(Arg2), Candidate is (Arg1 mod Arg2)".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
 			code_obj.comment = root.id
 
 		# Is
 
 		elif root.label == "__is__":
 
-			code_obj.name    = "is_{id}".format(id=root.id)
-			code_obj.arglist = root.unique_phrases
-			code_obj.code    = "{bid}( {aid} )".format(
-				aid = child_codes[0].name,
-				bid = child_codes[1].name
-			)
-			code_obj.comment = root.id
+			if child_codes[0].root.label == "__phrase__" and child_codes[1].root.label == "__phrase__":
+
+				code_obj.name    = "is_{id}".format(id=root.id)
+				code_obj.arglist = root.unique_phrases
+				code_obj.set_prolog( '{name}( A, A ).'.format(
+					name   = code_obj.name
+				) )
+
+			elif child_codes[0].root.label == "__phrase__" and child_codes[1].root.label != "__phrase__":
+
+				code_obj.name    = "is_{id}".format(id=root.id)
+				code_obj.arglist = root.unique_phrases
+				code_obj.code    = "{bid}( {aid} )".format(
+					aid = ', '.join(child_codes[1].arglist).replace( 'Candidate', child_codes[0].name ),
+					bid = child_codes[1].name
+				)
+				code_obj.comment = root.id
+		
+			elif child_codes[0].root.label != "__phrase__" and child_codes[1].root.label == "__phrase__":
+
+				code_obj.name    = "is_{id}".format(id=root.id)
+				code_obj.arglist = root.unique_phrases
+				code_obj.code    = "{aid}( {bid} )".format(
+					aid = child_codes[0].name,
+					bid = child_codes[1].name
+				)
+				code_obj.comment = root.id
+
+			else:
+
+				code_obj.name    = "is_{id}".format(id=root.id)
+				code_obj.arglist = root.unique_phrases
+				code_obj.code    = "{aid}( {a_arg} ), {bid}( {b_arg} )".format(
+					aid = child_codes[0].name,
+					a_arg = ', '.join(child_codes[0].arglist),
+					bid = child_codes[1].name,
+					b_arg = ', '.join(child_codes[1].arglist)
+				)
+				code_obj.comment = root.id
 
 		# If ___ then ___
 
@@ -212,11 +235,29 @@ class Code_Generator:
 
 			if_obj, then_obj = child_codes
 
-			code_obj.set_prolog( '{then_code} :- {if_code}. /* {comment} */'.format(
-				if_code   = if_obj.code,
-				then_code = then_obj.code,
-				comment   = root.id
-			) )
+			code_obj.name = "if_then_{id}".format(id=root.id)
+			code_obj.arglist = root.unique_phrases
+			code_obj.code = '( {if_name}( {if_args} ), {then_name}( {then_args} ) ) | not( {if_name}( {if_args} ) )'.format(
+				if_name = if_obj.name,
+				if_args = ', '.join( if_obj.arglist ),
+				then_name = then_obj.name,
+				then_args = ', '.join( then_obj.arglist )
+			)
+			code_obj.comment = root.id
+
+		elif root.label == "__iff then__":
+
+			if_obj, then_obj = child_codes
+
+			code_obj.name = "iff_then_{id}".format(id=root.id)
+			code_obj.arglist = root.unique_phrases
+			code_obj.code = '( {if_name}( {if_args} ), {then_name}( {then_args} ) ) | ( not( {if_name}( {if_args} ) ), not( {then_name}( {then_args} ) ) )'.format(
+				if_name = if_obj.name,
+				if_args = ', '.join( if_obj.arglist ),
+				then_name = then_obj.name,
+				then_args = ', '.join( then_obj.arglist )
+			)
+			code_obj.comment = root.id
 
 		# Givens, and rules
 

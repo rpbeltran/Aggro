@@ -28,6 +28,7 @@ class Aggro_Tokenizer:
     reserved = [ {
 
         'IF'        : gen_token( [  'if'  ],     True ),
+        'ONLY'      : gen_token( [  'only'  ],     True ),
         'THEN'      : gen_token( [ 'then' ],     True ), 
         'ELSE'      : gen_token( [ 'else' ],     True ), 
         'OTHERWISE' : gen_token( [ 'otherwise'], True ),
@@ -62,7 +63,7 @@ class Aggro_Tokenizer:
     }, {
 
         'DOES' : gen_token( [  'does'  ], True ),
-        'THE' : gen_token ( [  'the'   ], True ),
+        'THE'  : gen_token ( [  'the'   ], True ),
         'A'    : gen_token( ['a', 'the'], True )
 
     } ]
@@ -186,7 +187,7 @@ if __name__ == '__main__':
 
     tokenizer = Aggro_Tokenizer()
 
-    stemmed_input = ' '.join( map( stemmer.stem, stop_filter( "year y divide 1 than 1".split() ) ) )
+    stemmed_input = ' '.join( map( preprocessor.stem_word, "x does not equal 4".split() ) )
 
     for t in tokenizer.tokenize_sentence( stemmed_input ):
         print t
