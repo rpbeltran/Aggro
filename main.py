@@ -109,4 +109,5 @@ def process ( sentence ):
 
 
 #process ( "A year is a leapyear if and only if 4 divides the year evenly. The year is 2021. Is the year a leapyear?" )
-process ( "If x is 1 then x is y. x is 1. is x a y?" )
+#process ( "If x is 1 then x is y and x is 1. is x a y?" )
+process( "If and only if x is 1 then x is y and x is z. x is 1. Is x a z?")
